@@ -158,40 +158,6 @@ export const SkillsSection = () => {
               </div>
             </motion.div>
           ))}
-
-          {/* Responsive Design Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 * skillCategories.length }}
-            className="p-6 bg-card rounded-xl border border-border card-hover group"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                <Smartphone className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                Responsive Design 📱
-              </h3>
-            </div>
-            <p className="text-muted-foreground text-sm mb-4">
-              Works on mobile, tablet, laptop
-            </p>
-            <div className="flex items-center justify-center gap-6">
-              <div className="flex flex-col items-center gap-1">
-                <Smartphone className="w-6 h-6 text-primary" />
-                <span className="text-xs text-muted-foreground">Mobile</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <Tablet className="w-7 h-7 text-primary" />
-                <span className="text-xs text-muted-foreground">Tablet</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <Laptop className="w-8 h-8 text-primary" />
-                <span className="text-xs text-muted-foreground">Laptop</span>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
