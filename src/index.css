@@ -1,0 +1,180 @@
+@import "@fontsource/sora/400.css";
+@import "@fontsource/sora/500.css";
+@import "@fontsource/sora/600.css";
+@import "@fontsource/sora/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 270 100% 98%;
+    --foreground: 221 39% 17%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 221 39% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 39% 17%;
+
+    --primary: 263 83% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 255 92% 92%;
+    --secondary-foreground: 221 39% 17%;
+
+    --muted: 270 50% 95%;
+    --muted-foreground: 221 30% 40%;
+
+    --accent: 255 92% 85%;
+    --accent-foreground: 221 39% 17%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 255 40% 90%;
+    --input: 255 40% 90%;
+    --ring: 263 83% 58%;
+
+    --radius: 0.75rem;
+
+    /* Heading text color */
+    --heading: 221 39% 17%;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(263 83% 58%), hsl(255 92% 85%));
+    --gradient-accent: linear-gradient(135deg, hsl(263 83% 58% / 0.2), hsl(255 92% 85% / 0.2));
+    --gradient-hero: linear-gradient(180deg, hsl(270 100% 98%), hsl(270 80% 96%));
+    --glow-primary: 0 0 60px hsl(263 83% 58% / 0.2);
+    --glow-soft: 0 0 40px hsl(263 83% 58% / 0.1);
+    
+    --shadow-card: 0 4px 24px hsl(222 47% 11% / 0.08);
+    --shadow-elevated: 0 8px 32px hsl(222 47% 11% / 0.12);
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 174 72% 56%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 174 72% 56%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 174 72% 56%;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(174 72% 56%), hsl(199 89% 48%));
+    --gradient-accent: linear-gradient(135deg, hsl(174 72% 56% / 0.2), hsl(199 89% 48% / 0.2));
+    --gradient-hero: linear-gradient(180deg, hsl(222 47% 6%), hsl(222 47% 8%));
+    --glow-primary: 0 0 60px hsl(174 72% 56% / 0.3);
+    --glow-soft: 0 0 40px hsl(174 72% 56% / 0.15);
+    
+    --shadow-card: 0 4px 24px hsl(222 47% 2% / 0.4);
+    --shadow-elevated: 0 8px 32px hsl(222 47% 2% / 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Sora', sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .glow-effect {
+    box-shadow: var(--glow-primary);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .nav-link {
+    @apply relative text-muted-foreground transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300;
+    background: var(--gradient-primary);
+  }
+
+  .nav-link:hover {
+    @apply text-foreground;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+
+  .section-subheading {
+    @apply text-muted-foreground text-lg max-w-2xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
