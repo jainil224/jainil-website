@@ -86,8 +86,32 @@ export default {
           "50%": { transform: "translateY(-10px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(174 72% 56% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(174 72% 56% / 0.5)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(0 0% 100% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(0 0% 100% / 0.5)" },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
+        },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+        "shine-pulse": {
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+          to: {
+            "background-position": "0% 0%",
+          },
         },
       },
       animation: {
@@ -99,6 +123,9 @@ export default {
         "slide-in-right": "slide-in-right 0.5s ease-out forwards",
         "float": "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "meteor-effect": "meteor 5s linear infinite",
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        "shine-pulse": "shine-pulse var(--shine-pulse-duration) infinite linear",
       },
     },
   },
