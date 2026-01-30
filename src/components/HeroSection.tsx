@@ -56,7 +56,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10"
           >
-            Passionate about learning and exploring data-driven insights that help solve real-world problems. 
+            Passionate about learning and exploring data-driven insights that help solve real-world problems.
             I enjoy working with data, discovering patterns, and transforming raw information into actionable knowledge.
           </motion.p>
 
@@ -69,15 +69,14 @@ export const HeroSection = () => {
           >
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-effect px-8"
+              className="bg-white text-black hover:bg-gray-100 border border-gray-200 px-8 shadow-sm transition-all duration-300"
               asChild
             >
               <a href="#projects">View Projects</a>
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="border-border hover:bg-secondary px-8"
+              className="bg-black text-white hover:bg-neutral-800 px-8 transition-all duration-300"
               asChild
             >
               <a href="#contact">Contact Me</a>
@@ -95,7 +94,7 @@ export const HeroSection = () => {
               href="https://github.com/jainil224"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-primary hover:bg-secondary/80 transition-colors"
+              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-white hover:bg-black transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-black/20"
             >
               <Github size={20} />
             </a>
@@ -103,7 +102,7 @@ export const HeroSection = () => {
               href="https://www.linkedin.com/in/jainil-patel-947b1a336/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-primary hover:bg-secondary/80 transition-colors"
+              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-white hover:bg-[#0077b5] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0077b5]/20"
             >
               <Linkedin size={20} />
             </a>
@@ -111,7 +110,7 @@ export const HeroSection = () => {
               href="https://www.instagram.com/jainilll_2208/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-primary hover:bg-secondary/80 transition-colors"
+              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-white hover:bg-[#E1306C] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#E1306C]/20"
             >
               <Instagram size={20} />
             </a>
@@ -119,7 +118,7 @@ export const HeroSection = () => {
               href="https://leetcode.com/u/Jainill_2208/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-primary hover:bg-secondary/80 transition-colors"
+              className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-white hover:bg-[#FFA116] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#FFA116]/20"
             >
               <SiLeetcode size={20} />
             </a>

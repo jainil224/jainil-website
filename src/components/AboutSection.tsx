@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, Target, User } from "lucide-react";
+import { MagicCard } from "@/components/magicui/magic-card";
+import { useTheme } from "@/components/ThemeProvider";
 import profileImage from "@/assets/jainil-profile.jpeg";
 
 const infoCards = [
@@ -26,6 +28,7 @@ const infoCards = [
 ];
 
 export const AboutSection = () => {
+  const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -55,13 +58,16 @@ export const AboutSection = () => {
             <div className="relative mx-auto w-72 h-72 md:w-96 md:h-96 group cursor-pointer">
               {/* Decorative elements */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl rotate-6 transition-transform duration-300 group-hover:rotate-3" />
-              <div className="absolute inset-0 bg-card rounded-2xl border border-border overflow-hidden">
-                <img 
-                  src={profileImage} 
-                  alt="Jainil Patel" 
+              <MagicCard
+                gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                className="absolute inset-0 rounded-2xl border-border overflow-hidden"
+              >
+                <img
+                  src={profileImage}
+                  alt="Jainil Patel"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-              </div>
+              </MagicCard>
             </div>
           </motion.div>
 
@@ -73,19 +79,24 @@ export const AboutSection = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="p-6 bg-card rounded-xl border border-border card-hover"
+                className=""
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <card.icon className="w-6 h-6 text-primary" />
+                <MagicCard
+                  gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                  className="p-6 rounded-xl border-border card-hover cursor-default" // info cards usually not clickable but hover effect is nice
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-primary/10">
+                      <card.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
+                        {card.title}
+                      </h3>
+                      <p className="text-muted-foreground">{card.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      {card.title}
-                    </h3>
-                    <p className="text-muted-foreground">{card.description}</p>
-                  </div>
-                </div>
+                </MagicCard>
               </motion.div>
             ))}
           </div>

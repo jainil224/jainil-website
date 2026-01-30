@@ -20,7 +20,7 @@ export const Footer = () => {
               href="https://github.com/jainil224"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
             >
               <Github size={18} />
             </a>
@@ -28,7 +28,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/in/jainil-patel-947b1a336/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-[#0077b5] transition-all duration-300 hover:scale-110"
             >
               <Linkedin size={18} />
             </a>
@@ -36,7 +36,7 @@ export const Footer = () => {
               href="https://www.instagram.com/jainilll_2208/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-[#E1306C] transition-all duration-300 hover:scale-110"
             >
               <Instagram size={18} />
             </a>
@@ -44,7 +44,7 @@ export const Footer = () => {
               href="https://leetcode.com/u/Jainill_2208/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
+              className="text-muted-foreground hover:text-[#FFA116] transition-all duration-300 hover:scale-110"
             >
               <SiLeetcode size={18} />
             </a>

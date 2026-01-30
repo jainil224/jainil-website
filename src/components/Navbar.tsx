@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose, // Import SheetClose
+} from "./ui/sheet";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -15,7 +21,6 @@ const navLinks = [
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
@@ -45,15 +50,14 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#home" className="text-xl font-bold gradient-text">
-            Portfolio
+          <a href="#home" className="block">
+            <img src="/logo.png" alt="Logo" className="h-10 w-auto object-contain" />
           </a>
 
           {/* Desktop Navigation */}
@@ -62,9 +66,8 @@ export const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`nav-link ${
-                  activeSection === link.href.substring(1) ? "text-primary" : ""
-                }`}
+                className={`nav-link ${activeSection === link.href.substring(1) ? "text-primary" : ""
+                  }`}
               >
                 {link.name}
               </a>
@@ -75,44 +78,33 @@ export const Navbar = () => {
           {/* Mobile Menu Button & Theme Toggle */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-foreground"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <button className="p-2 text-foreground">
+                  <Menu size={24} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <div className="flex flex-col gap-4 mt-8">
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.name}>
+                      <a
+                        href={link.href}
+                        className={`text-lg font-medium transition-colors hover:text-primary ${activeSection === link.href.substring(1)
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                          }`}
+                      >
+                        {link.name}
+                      </a>
+                    </SheetClose>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card border-b border-border"
-          >
-            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-lg ${
-                    activeSection === link.href.substring(1)
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   );
 };

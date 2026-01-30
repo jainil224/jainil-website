@@ -37,6 +37,8 @@ import { TbSql, TbChartHistogram, TbApi } from "react-icons/tb";
 import { FaJava, FaC } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
+import { MagicCard } from "@/components/magicui/magic-card";
+import { useTheme } from "@/components/ThemeProvider";
 
 type SkillIcon = IconType | LucideIcon;
 
@@ -103,6 +105,7 @@ const skillCategories = [
 ];
 
 export const SkillsSection = () => {
+  const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -132,30 +135,35 @@ export const SkillsSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="p-6 bg-card rounded-xl border border-border card-hover group"
+              className="h-full"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                  <category.icon className="w-5 h-5 text-primary" />
+              <MagicCard
+                gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                className="p-6 rounded-xl border-border card-hover group flex-col cursor-pointer"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <category.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {category.title}
+                  </h3>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">
-                  {category.title}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => {
-                  const SkillIcon = skillIcons[skill];
-                  return (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-sm bg-secondary text-muted-foreground rounded-full hover:text-primary hover:bg-primary/10 transition-colors cursor-default flex items-center gap-1.5"
-                    >
-                      {SkillIcon && <SkillIcon className="w-3.5 h-3.5" />}
-                      {skill}
-                    </span>
-                  );
-                })}
-              </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => {
+                    const SkillIcon = skillIcons[skill];
+                    return (
+                      <span
+                        key={skill}
+                        className="px-3 py-1.5 text-sm bg-secondary text-muted-foreground rounded-full hover:text-primary hover:bg-primary/10 transition-colors cursor-default flex items-center gap-1.5"
+                      >
+                        {SkillIcon && <SkillIcon className="w-3.5 h-3.5" />}
+                        {skill}
+                      </span>
+                    );
+                  })}
+                </div>
+              </MagicCard>
             </motion.div>
           ))}
         </div>

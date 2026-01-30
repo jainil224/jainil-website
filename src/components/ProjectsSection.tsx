@@ -3,23 +3,40 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github, Folder, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import resumeAnalyzerImage from "@/assets/resume-analyzer.png";
+import { MagicCard } from "@/components/magicui/magic-card";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { SharpBorderBeam } from "@/components/magicui/sharp-border-beam";
+import { useTheme } from "@/components/ThemeProvider";
+
+import resumeAnalyzerImage from "@/assets/resume-analyzer-new.png";
 import excelDashboardImage from "@/assets/excel-dashboard.png";
 
 const projects = [
   {
-    title: "AI-Powered Resume Analyzer",
+    title: "Resume Analyzer",
     description:
-      "Developed an AI-powered resume analyzer to provide resume improvement insights. Implemented Supabase Edge Functions for AI-based analysis and assistant features. Integrated AI to extract skills and enhance resume quality.",
-    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase"],
-    github: "https://github.com",
-    live: "https://example.com",
+      "An AI-powered web application that analyzes resumes and provides instant feedback. Helps users optimize for ATS systems, match skills with job requirements, and receive smart, personalized improvement suggestions.",
+    features: [
+      "Real-time resume analysis",
+      "ATS compatibility check",
+      "AI-driven improvement suggestions",
+      "Job matching score",
+    ],
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Grok AI"],
+    github: "https://github.com/jainil224/resume-analyzer",
+    live: "https://resume-analyzer22.vercel.app/",
     image: resumeAnalyzerImage,
   },
   {
     title: "Excel Data Analysis Project",
     description:
       "Built an interactive Excel dashboard using Pivot Tables and VBA macros. Delivered clear visual insights for data-driven decision-making.",
+    features: [
+      "Interactive Dashboard",
+      "Automated VBA Macros",
+      "Complex Pivot Tables",
+      "Data Visualization",
+    ],
     tech: ["Excel", "VBA", "Pivot Tables"],
     github: "https://github.com",
     image: excelDashboardImage,
@@ -28,6 +45,7 @@ const projects = [
 ];
 
 export const ProjectsSection = () => {
+  const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -49,90 +67,139 @@ export const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Projects List - Horizontal Design */}
+        <div className="flex flex-col gap-12">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="group bg-card rounded-xl border border-border card-hover relative overflow-hidden"
+              className="w-full"
             >
-              {/* Project Image */}
-              {project.image && (
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              <MagicCard
+                className="flex flex-col w-full rounded-2xl border-none shadow-none bg-card/50 text-card-foreground p-0 overflow-hidden relative group"
+                gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+              >
+                <div className="flex flex-col lg:flex-row w-full border-none bg-transparent">
+                  {/* Project Image - Left Side */}
+                  {project.image && (
+                    <div className="relative w-full lg:w-1/2 overflow-hidden bg-black/20 flex items-center justify-center p-8 group-hover:bg-black/30 transition-colors">
+                      <div className="relative z-10 w-full h-full max-h-[400px] flex items-center justify-center">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Content - Right Side */}
+                  <div className="relative z-10 w-full lg:w-1/2 p-8 flex flex-col justify-center bg-card/30 backdrop-blur-sm">
+
+                    {/* Title & Desc */}
+                    <div className="mb-6">
+                      <h3 className="text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground text-lg leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    {/* Key Features */}
+                    <div className="mb-8">
+                      <h4 className="text-sm font-bold text-primary tracking-wider uppercase mb-3">
+                        Key Features
+                      </h4>
+                      <ul className="space-y-2">
+                        {project.features.map((feature, i) => (
+                          <li key={i} className="flex items-center text-muted-foreground">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Tech Stack */}
+                    <div className="mb-8">
+                      <h4 className="text-sm font-bold text-muted-foreground/50 tracking-wider uppercase mb-3">
+                        Technologies
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs font-medium px-3 py-1.5 bg-secondary/50 text-primary border border-primary/20 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Buttons */}
+                    <div className="flex flex-wrap gap-4 mt-auto">
+                      {project.live && (
+                        <Button
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6"
+                          asChild
+                        >
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink size={18} className="mr-2" />
+                            View Live
+                          </a>
+                        </Button>
+                      )}
+                      {project.download && (
+                        <Button
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6"
+                          asChild
+                        >
+                          <a
+                            href={project.download}
+                            download
+                          >
+                            <Download size={18} className="mr-2" />
+                            Download
+                          </a>
+                        </Button>
+                      )}
+                      {project.github && (
+                        <Button
+                          variant="outline"
+                          className="border-primary/20 hover:bg-primary/10 text-foreground font-semibold px-6"
+                          asChild
+                        >
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github size={18} className="mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+
+                  </div>
+
+                  {/* Sharp Border Beam - specific for projects section */}
+                  <SharpBorderBeam
+                    duration={10}
+                    size={300}
+                    color="#ffffff"
+                    borderWidth={1.5}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
                 </div>
-              )}
-
-              {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-              <div className="relative z-10 p-6">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <Folder className="w-6 h-6 text-primary" />
-                  </div>
-                  <div className="flex gap-3">
-                    {project.download && (
-                      <a
-                        href={project.download}
-                        download
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Download size={20} />
-                      </a>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Github size={20} />
-                      </a>
-                    )}
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <ExternalLink size={20} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs px-2.5 py-1 bg-secondary text-muted-foreground rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </MagicCard>
             </motion.div>
           ))}
         </div>

@@ -3,6 +3,9 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MagicCard } from "@/components/magicui/magic-card";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { useTheme } from "@/components/ThemeProvider";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -23,12 +26,13 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Location",
-    value: "Gujarat, India",
+    value: "Surat, Gujarat, India",
     href: null,
   },
 ];
 
 export const ContactSection = () => {
+  const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
@@ -115,9 +119,9 @@ export const ContactSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                className="flex items-center gap-4"
+                className="flex items-center gap-4 p-4 rounded-xl hover:bg-secondary/50 transition-all duration-300 hover:scale-105 border border-transparent hover:border-border/50 cursor-pointer group"
               >
-                <div className="p-3 rounded-lg bg-primary/10">
+                <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   <info.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
@@ -125,7 +129,7 @@ export const ContactSection = () => {
                   {info.href ? (
                     <a
                       href={info.href}
-                      className="text-foreground hover:text-primary transition-colors"
+                      className="text-foreground transition-colors"
                     >
                       {info.value}
                     </a>
@@ -138,12 +142,15 @@ export const ContactSection = () => {
 
             {/* Decorative element */}
             <div className="pt-8">
-              <div className="p-6 bg-card rounded-xl border border-border">
-                <p className="text-muted-foreground italic">
+              <MagicCard
+                gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                className="p-6 rounded-xl border-border flex-col"
+              >
+                <p className="text-muted-foreground italic relative z-10">
                   "I'm always excited to collaborate on interesting projects
                   and bring creative ideas to life."
                 </p>
-              </div>
+              </MagicCard>
             </div>
           </motion.div>
 
@@ -153,84 +160,109 @@ export const ContactSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form
-              onSubmit={handleSubmit}
-              className="p-6 md:p-8 bg-card rounded-xl border border-border"
-            >
-              <input
-                type="hidden"
-                name="access_key"
-                value="f9335228-e36a-4fb5-9759-cfa4456dca2b"
-              />
-              <div className="space-y-5">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    className="bg-secondary border-border focus:border-primary"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    required
-                    className="bg-secondary border-border focus:border-primary"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Your message..."
-                    rows={5}
-                    required
-                    className="bg-secondary border-border focus:border-primary resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-effect"
+            <div className="relative rounded-xl overflow-hidden">
+              <MagicCard
+                gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                className="p-6 md:p-8 rounded-xl border-border flex-col"
+              >
+                <form
+                  onSubmit={handleSubmit}
+                  className="relative z-10 w-full"
                 >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="ml-2 w-4 h-4" />
-                    </>
-                  )}
-                </Button>
-              </div>
-            </form>
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="f9335228-e36a-4fb5-9759-cfa4456dca2b"
+                  />
+                  <div className="space-y-5">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
+                        Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Your name"
+                        required
+                        className="bg-secondary border-border focus:border-primary"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        required
+                        className="bg-secondary border-border focus:border-primary"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
+                        Message
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="Your message..."
+                        rows={5}
+                        required
+                        className="bg-secondary border-border focus:border-primary resize-none"
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-effect relative overflow-hidden"
+                    >
+                      {isSubmitting ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="ml-2 w-4 h-4" />
+                        </>
+                      )}
+                      <BorderBeam
+                        size={40}
+                        initialOffset={20}
+                        className="from-transparent via-yellow-500 to-transparent"
+                        transition={{
+                          type: "spring",
+                          stiffness: 60,
+                          damping: 20,
+                        }}
+                      />
+                    </Button>
+                  </div>
+                </form>
+              </MagicCard>
+              <BorderBeam
+                size={300}
+                duration={12}
+                anchor={90}
+                borderWidth={1.5}
+                colorFrom="#ffffff"
+                colorTo="rgba(255,255,255,0)"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

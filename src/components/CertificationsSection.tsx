@@ -3,15 +3,29 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 import tataCertificate from "@/assets/tata-certificate.png";
 import deloitteCertificate from "@/assets/deloitte-certificate.png";
 import nptelCertificate from "@/assets/nptel-certificate.png";
 import hpLifeCertificate from "@/assets/hp-life-certificate.png";
 import pythonIbmCertificate from "@/assets/python-ibm-certificate.png";
 import uxFigmaCertificate from "@/assets/ux-figma-certificate.jpg";
+import { Badge } from "@/components/ui/badge";
+import { Spotlight, SpotLightItem } from "@/components/ui/spotlight";
+import { BorderBeam } from "@/components/magicui/border-beam";
 import promptEngineeringCertificate from "@/assets/prompt-engineering-certificate.jpg";
+import geminiCertificate from "@/assets/gemini-certified-student.png";
 const certifications = [
+  {
+    title: "Gemini Certified Student",
+    issuer: "Google for Education",
+    course: "Generative AI in Education",
+    date: "Jan 2026",
+    credentialId: "WB11vJM7oxfcQgqY4UGzDRAb",
+    verifyUrl: "https://edu.exceedlms.com/student/award/WB11vJM7oxfcQgqY4UGzDRAb",
+    description: "Demonstrated the knowledge, skills, and basic competencies needed to use Google AI in education. Validated proficiency in leveraging generative AI tools for learning and productivity.",
+    image: geminiCertificate,
+  },
   {
     title: "Computer Networks And Internet Protocol",
     issuer: "NPTEL - IIT Kharagpur",
@@ -104,94 +118,104 @@ export const CertificationsSection = () => {
         </motion.div>
 
         {/* Certifications List */}
-        <div className="flex flex-col gap-8">
+        <Spotlight className="flex flex-col gap-8">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="group bg-card rounded-2xl border border-border overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
+              className=""
             >
-              <div className="grid md:grid-cols-2 gap-0">
-                {/* Left - Certificate Image */}
-                <div className="bg-muted/50 p-8 flex items-center justify-center">
-                  <div 
-                    className="relative overflow-hidden rounded-lg shadow-lg max-w-md w-full cursor-pointer group/image"
-                    onClick={() => setSelectedImage({ src: cert.image, title: cert.title })}
-                  >
-                    <img
-                      src={cert.image}
-                      alt={cert.title}
-                      className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                      <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right - Details */}
-                <div className="p-8 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                    {cert.title}
-                  </h3>
-                  <p className="text-lg text-muted-foreground mb-6">{cert.issuer}</p>
-
-                  {/* Info Grid */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex gap-4">
-                      <span className="text-muted-foreground min-w-[80px]">Course:</span>
-                      <span className="text-foreground">{cert.course}</span>
-                    </div>
-                    <div className="flex gap-4">
-                      <span className="text-muted-foreground min-w-[80px]">Date:</span>
-                      <span className="text-foreground">{cert.date}</span>
-                    </div>
-                    {cert.score && (
-                      <div className="flex gap-4">
-                        <span className="text-muted-foreground min-w-[80px]">Score:</span>
-                        <span className="text-foreground font-semibold">{cert.score}</span>
-                      </div>
-                    )}
-                    {cert.rank && (
-                      <div className="flex gap-4 items-center">
-                        <span className="text-muted-foreground min-w-[80px]">Rank:</span>
-                        <Badge variant="default" className="bg-primary text-primary-foreground">
-                          {cert.rank}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {cert.description}
-                  </p>
-
-                  {/* Verify Button */}
-                  <div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="gap-2"
-                      asChild
+              <SpotLightItem
+                className="rounded-2xl border-border bg-card text-card-foreground shadow-sm hover:shadow-lg transition-shadow duration-300 w-full"
+              >
+                <div className="grid md:grid-cols-2 gap-0">
+                  {/* Left - Certificate Image */}
+                  <div className="bg-muted/50 p-8 flex items-center justify-center">
+                    <div
+                      className="relative overflow-hidden rounded-lg shadow-lg max-w-md w-full cursor-pointer group/image"
+                      onClick={() => setSelectedImage({ src: cert.image, title: cert.title })}
                     >
-                      <a
-                        href={cert.verifyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                        <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right - Details */}
+                  <div className="p-8 flex flex-col justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                      {cert.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-6">{cert.issuer}</p>
+
+                    {/* Info Grid */}
+                    <div className="space-y-3 mb-6">
+                      <div className="flex gap-4">
+                        <span className="text-muted-foreground min-w-[80px]">Course:</span>
+                        <span className="text-foreground">{cert.course}</span>
+                      </div>
+                      <div className="flex gap-4">
+                        <span className="text-muted-foreground min-w-[80px]">Date:</span>
+                        <span className="text-foreground">{cert.date}</span>
+                      </div>
+                      {cert.score && (
+                        <div className="flex gap-4">
+                          <span className="text-muted-foreground min-w-[80px]">Score:</span>
+                          <span className="text-foreground font-semibold">{cert.score}</span>
+                        </div>
+                      )}
+                      {cert.rank && (
+                        <div className="flex gap-4 items-center">
+                          <span className="text-muted-foreground min-w-[80px]">Rank:</span>
+                          <Badge variant="default" className="bg-primary text-primary-foreground">
+                            {cert.rank}
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                      {cert.description}
+                    </p>
+
+                    {/* Verify Button */}
+                    <div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-2"
+                        asChild
                       >
-                        Verify Certificate
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </Button>
+                        <a
+                          href={cert.verifyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Verify Certificate
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <BorderBeam
+                  duration={9}
+                  size={300}
+                  colorFrom="#ffffff"
+                  colorTo="#ffffff"
+                />
+              </SpotLightItem>
             </motion.div>
           ))}
-        </div>
+        </Spotlight>
 
         {/* Continuous Learning Journey Card */}
         <motion.div
@@ -245,6 +269,6 @@ export const CertificationsSection = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </section >
   );
 };

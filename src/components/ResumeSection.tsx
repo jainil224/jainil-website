@@ -3,6 +3,8 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Download, FileText, Eye, EyeOff, Briefcase, GraduationCap, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MagicCard } from "@/components/magicui/magic-card";
+import { useTheme } from "@/components/ThemeProvider";
 
 const experiences: Array<{
   type: string;
@@ -13,12 +15,13 @@ const experiences: Array<{
 }> = [];
 
 export const ResumeSection = () => {
+  const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [showPreview, setShowPreview] = useState(false);
 
   // Replace with your actual resume PDF URL
-  const resumeUrl = "/resume.pdf";
+  const resumeUrl = "/Jainil_Resume.pdf";
 
   return (
     <section id="resume" className="py-24 relative" ref={ref}>
@@ -83,8 +86,11 @@ export const ResumeSection = () => {
               exit={{ opacity: 0, height: 0 }}
               className="mb-12"
             >
-              <div className="bg-card rounded-xl border border-border overflow-hidden">
-                <div className="p-4 border-b border-border flex items-center gap-2">
+              <MagicCard
+                gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                className="rounded-xl border-border overflow-hidden flex-col"
+              >
+                <div className="p-4 border-b border-border flex items-center gap-2 relative z-10">
                   <FileText className="w-5 h-5 text-primary" />
                   <span className="font-medium text-foreground">Resume Preview</span>
                 </div>
@@ -108,7 +114,7 @@ export const ResumeSection = () => {
                     </div>
                   </object>
                 </div>
-              </div>
+              </MagicCard>
             </motion.div>
           )}
 
@@ -123,19 +129,18 @@ export const ResumeSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                className={`relative flex flex-col md:flex-row gap-4 md:gap-8 mb-8 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
+                className={`relative flex flex-col md:flex-row gap-4 md:gap-8 mb-8 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                  }`}
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full -translate-x-1/2 mt-6 md:mt-8 ring-4 ring-background" />
 
                 {/* Content */}
                 <div className={`flex-1 ml-10 md:ml-0 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                  <div
-                    className={`p-6 bg-card rounded-xl border border-border card-hover ${
-                      index % 2 === 0 ? "md:mr-8" : "md:ml-8"
-                    }`}
+                  <MagicCard
+                    gradientColor={theme === "dark" ? "#262626" : "rgba(255,255,255,0.0)"}
+                    className={`p-6 rounded-xl border-border card-hover flex-col ${index % 2 === 0 ? "md:mr-8 items-end" : "md:ml-8 items-start"
+                      }`}
                   >
                     <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
                       {exp.type === "work" ? (
@@ -156,7 +161,7 @@ export const ResumeSection = () => {
                       {exp.period}
                     </div>
                     <p className="text-muted-foreground text-sm">{exp.description}</p>
-                  </div>
+                  </MagicCard>
                 </div>
 
                 {/* Spacer for alternating layout */}
