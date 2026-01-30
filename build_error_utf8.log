@@ -1,0 +1,69 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+npm : Browserslist: browsers data 
+(caniuse-lite) is 7 months old. Please 
+run:
+At line:1 char:1
++ npm run build > build_error.log 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifi 
+   ed: (Browserslist: b...ld. Please ru  
+  n::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeComm 
+   andError
+ 
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https:/
+/github.com/browserslist/update-db#readme
+[32mΓ£ô[39m 2097 modules transformed.
+[31mx[39m Build failed in 7.16s
+[31merror during build:
+[31msrc/components/magicui/shine-border.
+tsx (2:9): "cnBase" is not exported by "n
+ode_modules/tailwind-variants/dist/index.
+js", imported by "src/components/magicui/
+shine-border.tsx".[31m
+file: [36mD:/Port/src/components/magicui
+/shine-border.tsx:2:9[31m
+[33m
+1: import { cn } from "@/lib/utils";
+2: import { cnBase } from 
+"tailwind-variants";
+            ^
+3: 
+4: type Color = string | string[];
+[31m
+    at getRollupError (file:///D:/Port/no
+de_modules/rollup/dist/es/shared/parseAst
+.js:395:41)
+    at error (file:///D:/Port/node_module
+s/rollup/dist/es/shared/parseAst.js:391:4
+2)
+    at Module.error (file:///D:/Port/node
+_modules/rollup/dist/es/shared/node-entry
+.js:15535:16)
+    at Module.traceVariable (file:///D:/P
+ort/node_modules/rollup/dist/es/shared/no
+de-entry.js:15984:29)
+    at ModuleScope.findVariable (file:///
+D:/Port/node_modules/rollup/dist/es/share
+d/node-entry.js:13770:39)
+    at ReturnValueScope.findVariable (fil
+e:///D:/Port/node_modules/rollup/dist/es/
+shared/node-entry.js:5252:38)
+    at FunctionBodyScope.findVariable (fi
+le:///D:/Port/node_modules/rollup/dist/es
+/shared/node-entry.js:5252:38)
+    at Identifier.bind (file:///D:/Port/n
+ode_modules/rollup/dist/es/shared/node-en
+try.js:5035:40)
+    at CallExpression.bind (file:///D:/Po
+rt/node_modules/rollup/dist/es/shared/nod
+e-entry.js:2855:23)
+    at CallExpression.bind (file:///D:/Po
+rt/node_modules/rollup/dist/es/shared/nod
+e-entry.js:11235:15)[39m
