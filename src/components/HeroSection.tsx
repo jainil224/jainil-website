@@ -99,7 +99,7 @@ export const HeroSection = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://www.linkedin.com/in/jainil-patel-947b1a336/"
+              href="https://www.linkedin.com/in/jainil-patel2224/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary text-muted-foreground hover:text-white hover:bg-[#0077b5] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0077b5]/20"

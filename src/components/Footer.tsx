@@ -25,7 +25,7 @@ export const Footer = () => {
               <Github size={18} />
             </a>
             <a
-              href="https://www.linkedin.com/in/jainil-patel-947b1a336/"
+              href="https://www.linkedin.com/in/jainil-patel2224/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-[#0077b5] transition-all duration-300 hover:scale-110"
