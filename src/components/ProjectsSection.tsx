@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { MagicCard } from "@/components/magicui/magic-card";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { SharpBorderBeam } from "@/components/magicui/sharp-border-beam";
+import { ShineBorder } from "@/components/magicui/shine-border";
+import { Sparkles } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 
 import resumeAnalyzerImage from "@/assets/resume-analyzer-new.png";
@@ -226,6 +228,25 @@ export const ProjectsSection = () => {
               <Github className="ml-2 w-4 h-4" />
             </a>
           </Button>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-12 flex justify-center"
+          >
+            <ShineBorder
+              className="text-center p-0 overflow-hidden relative w-fit rounded-xl bg-background/50 border border-border/50"
+              color={theme === "dark" ? ["#FFFFFF", "#A3A3A3"] : ["#000000", "#525252"]}
+            >
+              <div className="px-8 py-3 bg-background/20 backdrop-blur-md rounded-xl flex items-center gap-3">
+                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                <span className="text-foreground/80 text-base font-medium tracking-wide">
+                  More projects coming soon...
+                </span>
+                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              </div>
+            </ShineBorder>
+          </motion.div>
         </motion.div>
       </div>
     </section>

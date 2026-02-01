@@ -24,14 +24,15 @@ import {
   SiFlask,
   SiFastapi,
   SiSpring,
-  SiSpringboot,
+
   SiMongodb,
-  SiHibernate,
+
   SiGit,
   SiGithub,
   SiAmazonwebservices,
   SiLeetcode,
   SiGoogle,
+  SiSupabase,
 } from "react-icons/si";
 import { TbSql, TbChartHistogram, TbApi } from "react-icons/tb";
 import { FaJava, FaC } from "react-icons/fa6";
@@ -58,12 +59,12 @@ const skillIcons: Record<string, SkillIcon> = {
   "Flask": SiFlask,
   "FastAPI": SiFastapi,
   "Spring": SiSpring,
-  "Spring Boot": SiSpringboot,
+
   // APIs & Databases
   "REST APIs": TbApi,
   "SQL": TbSql,
   "MongoDB": SiMongodb,
-  "Hibernate": SiHibernate,
+  "Supabase": SiSupabase,
   "Gemini APIs": SiGoogle,
   // Other Skills
   "Excel": TableProperties,
@@ -90,12 +91,12 @@ const skillCategories = [
   {
     title: "Frameworks & Tools",
     icon: Wrench,
-    skills: ["Django", "Flask", "FastAPI", "Spring", "Spring Boot"],
+    skills: ["Django", "Flask", "FastAPI", "Spring"],
   },
   {
     title: "APIs & Databases",
     icon: Database,
-    skills: ["REST APIs", "SQL", "MongoDB", "Hibernate", "Gemini APIs"],
+    skills: ["REST APIs", "SQL", "MongoDB", "Supabase", "Gemini APIs"],
   },
   {
     title: "Other Skills",
