@@ -12,8 +12,24 @@ import { useTheme } from "@/components/ThemeProvider";
 
 import resumeAnalyzerImage from "@/assets/resume-analyzer-new.png";
 import excelDashboardImage from "@/assets/excel-dashboard.png";
+import chromaticImage from "@/assets/chromatic color.png";
 
 const projects = [
+  {
+    title: "Chromatic Color Palettes",
+    description:
+      "A comprehensive platform for discovering and creating beautiful color palettes. Features hand-picked collections, a powerful palette maker, and AI-driven extraction from images.",
+    features: [
+      "700+ Curated Palettes",
+      "Interactive Palette Maker",
+      "Image-to-Palette Extractor",
+      "Midnight & Light Themes",
+    ],
+    tech: ["HTML", "JS", "React", "Tailwind CSS", "Framer Motion", "Vite", "Supabase"],
+    github: "https://github.com/jainil224/Chromatic",
+    live: "https://chromatic-colorpalette.vercel.app/",
+    image: chromaticImage,
+  },
   {
     title: "Resume Analyzer",
     description:
@@ -26,7 +42,7 @@ const projects = [
     ],
     tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Grok AI"],
     github: "https://github.com/jainil224/resume-analyzer",
-    live: "https://resume-analyzer22.vercel.app/",
+    live: "https://resume-analyzerai.vercel.app/",
     image: resumeAnalyzerImage,
   },
   {
@@ -76,7 +92,7 @@ export const ProjectsSection = () => {
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="w-full"
             >
               <MagicCard
