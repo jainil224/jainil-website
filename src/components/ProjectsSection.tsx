@@ -19,14 +19,14 @@ const projects = [
   {
     title: "DataWeave AI",
     description:
-      "A robust data processing solution designed to transform raw, messy datasets into structured, analysis-ready information. Features automated cleaning pipelines and smart anomaly detection.",
+      "Developed an AI-powered Excel data cleaning platform for automated dataset preprocessing.",
     features: [
-      "Automated Data Transformation",
-      "Duplicate & Null Handling",
-      "Smart Anomaly Detection",
-      "Schema Validation",
+      "Duplicate removal & missing value handling",
+      "Formatting automation & AI-driven insights",
+      "Simplified complex data-cleaning workflows",
+      "Responsive UI for automated preprocessing",
     ],
-    tech: ["Python", "Pandas", "NumPy", "Scikit-learn"],
+    tech: ["React", "Node.js", "AI APIs", "Excel Processing"],
     github: "https://github.com/jainil224",
     live: "https://smartdataclean-ai.vercel.app/",
     image: dataCleaningImage,

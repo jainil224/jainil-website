@@ -15,7 +15,19 @@ import { Spotlight, SpotLightItem } from "@/components/ui/spotlight";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import promptEngineeringCertificate from "@/assets/prompt-engineering-certificate.jpg";
 import geminiCertificate from "@/assets/gemini-certified-student.png";
+import newCertificate from "@/assets/cartificat.png";
+
 const certifications = [
+  {
+    title: "Introduction to Data Science",
+    issuer: "Cisco Networking Academy",
+    course: "Introduction to Data Science",
+    date: "Feb 10, 2026",
+    credentialId: "3b6ba01f-3097-42ee-88f5-6de8b6c8df43",
+    verifyUrl: "https://www.netacad.com/certificates/?issuanceId=3b6ba01f-3097-42ee-88f5-6de8b6c8df43",
+    description: "Successfully completed the Introduction to Data Science course, building foundational knowledge in data analysis, data visualization, and machine learning fundamentals. Gained hands-on understanding of how to collect, clean, and analyze data to extract meaningful insights. Explored real-world applications of data science and learned how data-driven strategies support business decision-making and innovation.",
+    image: newCertificate,
+  },
   {
     title: "Gemini Certified Student",
     issuer: "Google for Education",
@@ -117,120 +129,132 @@ export const CertificationsSection = () => {
           </p>
         </motion.div>
 
-        {/* Certifications List */}
-        <Spotlight className="flex flex-col gap-8">
-          {certifications.map((cert, index) => (
-            <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              className=""
-            >
-              <SpotLightItem
-                className="rounded-2xl border-border bg-card text-card-foreground shadow-sm hover:shadow-lg transition-shadow duration-300 w-full"
+        <Spotlight className="space-y-8">
+          {/* Certifications List */}
+          <div className="flex flex-col gap-8">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                className=""
               >
-                <div className="grid md:grid-cols-2 gap-0">
-                  {/* Left - Certificate Image */}
-                  <div className="bg-muted/50 p-8 flex items-center justify-center">
-                    <div
-                      className="relative overflow-hidden rounded-lg shadow-lg max-w-md w-full cursor-pointer group/image"
-                      onClick={() => setSelectedImage({ src: cert.image, title: cert.title })}
-                    >
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                        <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right - Details */}
-                  <div className="p-8 flex flex-col justify-center">
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                      {cert.title}
-                    </h3>
-                    <p className="text-lg text-muted-foreground mb-6">{cert.issuer}</p>
-
-                    {/* Info Grid */}
-                    <div className="space-y-3 mb-6">
-                      <div className="flex gap-4">
-                        <span className="text-muted-foreground min-w-[80px]">Course:</span>
-                        <span className="text-foreground">{cert.course}</span>
-                      </div>
-                      <div className="flex gap-4">
-                        <span className="text-muted-foreground min-w-[80px]">Date:</span>
-                        <span className="text-foreground">{cert.date}</span>
-                      </div>
-                      {cert.score && (
-                        <div className="flex gap-4">
-                          <span className="text-muted-foreground min-w-[80px]">Score:</span>
-                          <span className="text-foreground font-semibold">{cert.score}</span>
-                        </div>
-                      )}
-                      {cert.rank && (
-                        <div className="flex gap-4 items-center">
-                          <span className="text-muted-foreground min-w-[80px]">Rank:</span>
-                          <Badge variant="default" className="bg-primary text-primary-foreground">
-                            {cert.rank}
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {cert.description}
-                    </p>
-
-                    {/* Verify Button */}
-                    <div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="gap-2"
-                        asChild
+                <SpotLightItem
+                  className="rounded-2xl border-border bg-card text-card-foreground shadow-sm hover:shadow-lg transition-shadow duration-300 w-full"
+                >
+                  <div className="grid md:grid-cols-2 gap-0">
+                    {/* Left - Certificate Image */}
+                    <div className="bg-muted/50 p-8 flex items-center justify-center">
+                      <div
+                        className="relative overflow-hidden rounded-lg shadow-lg max-w-md w-full cursor-pointer group/image"
+                        onClick={() => setSelectedImage({ src: cert.image, title: cert.title })}
                       >
-                        <a
-                          href={cert.verifyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <img
+                          src={cert.image}
+                          alt={cert.title}
+                          className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                          <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right - Details */}
+                    <div className="p-8 flex flex-col justify-center">
+                      <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                        {cert.title}
+                      </h3>
+                      <p className="text-lg text-muted-foreground mb-6">{cert.issuer}</p>
+
+                      {/* Info Grid */}
+                      <div className="space-y-3 mb-6">
+                        <div className="flex gap-4">
+                          <span className="text-muted-foreground min-w-[80px]">Course:</span>
+                          <span className="text-foreground">{cert.course}</span>
+                        </div>
+                        <div className="flex gap-4">
+                          <span className="text-muted-foreground min-w-[80px]">Date:</span>
+                          <span className="text-foreground">{cert.date}</span>
+                        </div>
+                        {cert.score && (
+                          <div className="flex gap-4">
+                            <span className="text-muted-foreground min-w-[80px]">Score:</span>
+                            <span className="text-foreground font-semibold">{cert.score}</span>
+                          </div>
+                        )}
+                        {cert.rank && (
+                          <div className="flex gap-4 items-center">
+                            <span className="text-muted-foreground min-w-[80px]">Rank:</span>
+                            <Badge variant="default" className="bg-primary text-primary-foreground">
+                              {cert.rank}
+                            </Badge>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                        {cert.description}
+                      </p>
+
+                      {/* Verify Button */}
+                      <div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="gap-2"
+                          asChild
                         >
-                          Verify Certificate
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </Button>
+                          <a
+                            href={cert.verifyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Verify Certificate
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <BorderBeam
-                  duration={9}
-                  size={300}
-                  colorFrom="#ffffff"
-                  colorTo="#ffffff"
-                />
-              </SpotLightItem>
-            </motion.div>
-          ))}
-        </Spotlight>
+                  <BorderBeam
+                    duration={12}
+                    size={400}
+                    colorFrom="hsl(var(--primary))"
+                    colorTo="transparent"
+                    borderWidth={2}
+                  />
+                </SpotLightItem>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* Continuous Learning Journey Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-12 bg-card rounded-2xl border border-border p-8 text-center shadow-sm"
-        >
-          <h3 className="text-xl font-semibold italic text-foreground mb-3">
-            Continuous Learning Journey
-          </h3>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            I'm always exploring new technologies and expanding my knowledge through additional courses and certifications.
-          </p>
-        </motion.div>
+          {/* Continuous Learning Journey Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="mt-12"
+          >
+            <SpotLightItem className="rounded-2xl border-border bg-card p-8 text-center shadow-sm">
+              <h3 className="text-xl font-semibold italic text-foreground mb-3">
+                Continuous Learning Journey
+              </h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                I'm always exploring new technologies and expanding my knowledge through additional courses and certifications.
+              </p>
+              <BorderBeam
+                duration={12}
+                size={400}
+                colorFrom="hsl(var(--primary))"
+                colorTo="transparent"
+                borderWidth={2}
+              />
+            </SpotLightItem>
+          </motion.div>
+        </Spotlight>
       </div>
 
       {/* Lightbox Modal */}

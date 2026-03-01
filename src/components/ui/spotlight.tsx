@@ -82,7 +82,7 @@ export const SpotLightItem = ({
         <div
             ref={itemRef}
             className={cn(
-                "group relative border-neutral-800 bg-neutral-900 overflow-hidden",
+                "group relative overflow-hidden",
                 className
             )}
         >
