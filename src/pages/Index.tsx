@@ -10,10 +10,12 @@ import { Footer } from "@/components/Footer";
 import { Meteors } from "@/components/magicui/meteors";
 
 const Index = () => {
+  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
+
   return (
     <main className="min-h-screen bg-background relative selection:bg-primary/20">
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <Meteors number={40} />
+        <Meteors number={isMobile ? 20 : 80} />
       </div>
       <div className="relative z-10">
         <Navbar />

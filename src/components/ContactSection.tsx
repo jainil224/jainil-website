@@ -242,13 +242,7 @@ export const ContactSection = () => {
                       )}
                       <BorderBeam
                         size={40}
-                        initialOffset={20}
                         className="from-transparent via-yellow-500 to-transparent"
-                        transition={{
-                          type: "spring",
-                          stiffness: 60,
-                          damping: 20,
-                        }}
                       />
                     </Button>
                   </div>

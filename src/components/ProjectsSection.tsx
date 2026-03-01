@@ -13,8 +13,24 @@ import { useTheme } from "@/components/ThemeProvider";
 import resumeAnalyzerImage from "@/assets/resume-analyzer-new.png";
 import excelDashboardImage from "@/assets/excel-dashboard.png";
 import chromaticImage from "@/assets/chromatic color.png";
+import dataCleaningImage from "@/assets/data cleaining.png";
 
 const projects = [
+  {
+    title: "DataWeave AI",
+    description:
+      "A robust data processing solution designed to transform raw, messy datasets into structured, analysis-ready information. Features automated cleaning pipelines and smart anomaly detection.",
+    features: [
+      "Automated Data Transformation",
+      "Duplicate & Null Handling",
+      "Smart Anomaly Detection",
+      "Schema Validation",
+    ],
+    tech: ["Python", "Pandas", "NumPy", "Scikit-learn"],
+    github: "https://github.com/jainil224",
+    live: "https://smartdataclean-ai.vercel.app/",
+    image: dataCleaningImage,
+  },
   {
     title: "Chromatic Color Palettes",
     description:
@@ -25,7 +41,7 @@ const projects = [
       "Image-to-Palette Extractor",
       "Midnight & Light Themes",
     ],
-    tech: ["HTML", "JS", "React", "Tailwind CSS", "Framer Motion", "Vite", "Supabase"],
+    tech: ["HTML", "JS", "React", "Tailwind CSS", "Vite", "Supabase"],
     github: "https://github.com/jainil224/Chromatic",
     live: "https://chromatic-colorpalette.vercel.app/",
     image: chromaticImage,
@@ -208,15 +224,14 @@ export const ProjectsSection = () => {
                     </div>
 
                   </div>
-
-                  {/* Sharp Border Beam - specific for projects section */}
-                  <SharpBorderBeam
-                    duration={10}
-                    size={300}
-                    color="#ffffff"
-                    borderWidth={1.5}
-                  />
                 </div>
+                <SharpBorderBeam
+                  key={`beam-${project.title}`}
+                  duration={10}
+                  size={300}
+                  color="#ffffff"
+                  borderWidth={1.5}
+                />
               </MagicCard>
             </motion.div>
           ))}
@@ -265,6 +280,6 @@ export const ProjectsSection = () => {
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </section >
   );
 };
