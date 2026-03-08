@@ -12,7 +12,7 @@ import pythonIbmCertificate from "@/assets/python-ibm-certificate.png";
 import uxFigmaCertificate from "@/assets/ux-figma-certificate.jpg";
 import { Badge } from "@/components/ui/badge";
 import { Spotlight, SpotLightItem } from "@/components/ui/spotlight";
-import { BorderBeam } from "@/components/magicui/border-beam";
+import { SharpBorderBeam } from "@/components/magicui/sharp-border-beam";
 import promptEngineeringCertificate from "@/assets/prompt-engineering-certificate.jpg";
 import geminiCertificate from "@/assets/gemini-certified-student.png";
 import newCertificate from "@/assets/cartificat.png";
@@ -219,12 +219,11 @@ export const CertificationsSection = () => {
                       </div>
                     </div>
                   </div>
-                  <BorderBeam
-                    duration={12}
-                    size={400}
-                    colorFrom="hsl(var(--primary))"
-                    colorTo="transparent"
-                    borderWidth={2}
+                  <SharpBorderBeam
+                    duration={10}
+                    size={300}
+                    color="#ffffff"
+                    borderWidth={1.5}
                   />
                 </SpotLightItem>
               </motion.div>
@@ -245,12 +244,11 @@ export const CertificationsSection = () => {
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 I'm always exploring new technologies and expanding my knowledge through additional courses and certifications.
               </p>
-              <BorderBeam
-                duration={12}
-                size={400}
-                colorFrom="hsl(var(--primary))"
-                colorTo="transparent"
-                borderWidth={2}
+              <SharpBorderBeam
+                duration={10}
+                size={300}
+                color="#ffffff"
+                borderWidth={1.5}
               />
             </SpotLightItem>
           </motion.div>

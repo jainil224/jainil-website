@@ -14,8 +14,28 @@ import resumeAnalyzerImage from "@/assets/resume-analyzer-new.png";
 import excelDashboardImage from "@/assets/excel-dashboard.png";
 import chromaticImage from "@/assets/chromatic color.png";
 import dataCleaningImage from "@/assets/data cleaining.png";
+import chromaticVideo from "@/assets/chromatic color .mp4";
+import uiHubVideo from "@/assets/UI HUB NEW.mp4";
+import dataWaveVideo from "@/assets/data wave.mp4";
 
 const projects = [
+  {
+    title: "UI Hub",
+    description:
+      "Developed a modern platform for discovering, generating, and exploring high-quality UI components, animations, and design prompts for developers and designers.",
+    features: [
+      "Large library of ready-to-use UI components",
+      "AI-powered prompt system for generating modern UI designs",
+      "Live preview with copy-paste code (HTML / CSS / React / Tailwind)",
+      "Categorized components like buttons, cards, cursors, effects, and backgrounds",
+      "Smooth animations and interactive UI using modern frontend technologies",
+      "Clean, responsive, and developer-friendly interface",
+    ],
+    tech: ["React", "Node.js", "Tailwind CSS", "Framer Motion", "AI APIs"],
+    github: "https://github.com/jainil224",
+    live: "https://ui-hub-design.vercel.app/",
+    video: uiHubVideo,
+  },
   {
     title: "DataWeave AI",
     description:
@@ -29,7 +49,7 @@ const projects = [
     tech: ["React", "Node.js", "AI APIs", "Excel Processing"],
     github: "https://github.com/jainil224",
     live: "https://smartdataclean-ai.vercel.app/",
-    image: dataCleaningImage,
+    video: dataWaveVideo,
   },
   {
     title: "Chromatic Color Palettes",
@@ -44,7 +64,7 @@ const projects = [
     tech: ["HTML", "JS", "React", "Tailwind CSS", "Vite", "Supabase"],
     github: "https://github.com/jainil224/Chromatic",
     live: "https://chromatic-colorpalette.vercel.app/",
-    image: chromaticImage,
+    video: chromaticVideo,
   },
   {
     title: "Resume Analyzer",
@@ -116,15 +136,26 @@ export const ProjectsSection = () => {
                 gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
               >
                 <div className="flex flex-col lg:flex-row w-full border-none bg-transparent">
-                  {/* Project Image - Left Side */}
-                  {project.image && (
+                  {/* Project Image/Video - Left Side */}
+                  {(project.image || project.video) && (
                     <div className="relative w-full lg:w-1/2 overflow-hidden bg-black/20 flex items-center justify-center p-8 group-hover:bg-black/30 transition-colors">
                       <div className="relative z-10 w-full h-full max-h-[400px] flex items-center justify-center">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
-                        />
+                        {project.video ? (
+                          <video
+                            src={project.video}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
+                          />
+                        )}
                       </div>
                     </div>
                   )}
@@ -259,16 +290,8 @@ export const ProjectsSection = () => {
               <Github className="ml-2 w-4 h-4" />
             </a>
           </Button>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-12 flex justify-center"
-          >
-            <ShineBorder
-              className="text-center p-0 overflow-hidden relative w-fit rounded-xl bg-background/50 border border-border/50"
-              color={theme === "dark" ? ["#FFFFFF", "#A3A3A3"] : ["#000000", "#525252"]}
-            >
+          <div className="mt-12 flex justify-center">
+            <div className="text-center p-0 overflow-hidden relative w-fit rounded-xl bg-background/50 border border-border/50">
               <div className="px-8 py-3 bg-background/20 backdrop-blur-md rounded-xl flex items-center gap-3">
                 <Sparkles className="w-4 h-4 text-primary animate-pulse" />
                 <span className="text-foreground/80 text-base font-medium tracking-wide">
@@ -276,8 +299,14 @@ export const ProjectsSection = () => {
                 </span>
                 <Sparkles className="w-4 h-4 text-primary animate-pulse" />
               </div>
-            </ShineBorder>
-          </motion.div>
+              <SharpBorderBeam
+                duration={10}
+                size={300}
+                color="#ffffff"
+                borderWidth={1.5}
+              />
+            </div>
+          </div>
         </motion.div>
       </div>
     </section >
