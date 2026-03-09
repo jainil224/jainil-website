@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Github, Folder, Download } from "lucide-react";
+import { useRef, useState } from "react";
+import { ExternalLink, Github, Folder, Download, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MagicCard } from "@/components/magicui/magic-card";
 import { BorderBeam } from "@/components/magicui/border-beam";
@@ -102,6 +102,7 @@ export const ProjectsSection = () => {
   const { theme } = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedMedia, setSelectedMedia] = useState<{ src: string; title: string; type: "video" | "image" } | null>(null);
 
   return (
     <section id="projects" className="py-24 relative" ref={ref}>
@@ -138,17 +139,27 @@ export const ProjectsSection = () => {
                 <div className="flex flex-col lg:flex-row w-full border-none bg-transparent">
                   {/* Project Image/Video - Left Side */}
                   {(project.image || project.video) && (
-                    <div className="relative w-full lg:w-1/2 overflow-hidden bg-black/20 flex items-center justify-center p-8 group-hover:bg-black/30 transition-colors">
-                      <div className="relative z-10 w-full h-full max-h-[400px] flex items-center justify-center">
+                    <div
+                      className="relative w-full lg:w-1/2 overflow-hidden bg-black/20 flex items-center justify-center p-8 group-hover:bg-black/30 transition-colors cursor-pointer"
+                      onClick={() => setSelectedMedia({
+                        src: (project.video || project.image) as string,
+                        title: project.title,
+                        type: project.video ? "video" : "image"
+                      })}
+                    >
+                      <div className="relative z-10 w-full h-full max-h-[400px] flex items-center justify-center group/media">
                         {project.video ? (
                           <video
-                            src={project.video}
+                            key={project.video}
                             autoPlay
                             loop
                             muted
                             playsInline
                             className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
-                          />
+                          >
+                            <source src={project.video} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
                         ) : (
                           <img
                             src={project.image}
@@ -156,6 +167,14 @@ export const ProjectsSection = () => {
                             className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
                           />
                         )}
+
+                        {/* Hover Overlay */}
+                        <div className="absolute inset-0 bg-black/0 group-hover/media:bg-black/40 transition-all duration-300 flex items-center justify-center opacity-0 group-hover/media:opacity-100 rounded-lg">
+                          <div className="bg-primary/90 text-primary-foreground px-4 py-2 rounded-full flex items-center gap-2 transform translate-y-4 group-hover/media:translate-y-0 transition-transform duration-300">
+                            <ZoomIn size={18} />
+                            <span className="font-semibold text-sm">Full View</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -309,6 +328,58 @@ export const ProjectsSection = () => {
           </div>
         </motion.div>
       </div>
+      {/* Media Lightbox */}
+      <AnimatePresence>
+        {selectedMedia && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-8"
+            onClick={() => setSelectedMedia(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-6xl w-full flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedMedia(null)}
+                className="absolute -top-12 right-0 md:right-0 p-2 text-white hover:text-primary transition-colors bg-white/10 rounded-full backdrop-blur-sm"
+                aria-label="Close lightbox"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="w-full bg-black/40 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                {selectedMedia.type === "video" ? (
+                  <video
+                    src={selectedMedia.src}
+                    controls
+                    autoPlay
+                    className="w-full h-auto max-h-[80vh] object-contain"
+                  />
+                ) : (
+                  <img
+                    src={selectedMedia.src}
+                    alt={selectedMedia.title}
+                    className="w-full h-auto max-h-[80vh] object-contain"
+                  />
+                )}
+              </div>
+
+              <div className="mt-6 text-center">
+                <h3 className="text-2xl font-bold text-white tracking-tight">
+                  {selectedMedia.title}
+                </h3>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section >
   );
 };
