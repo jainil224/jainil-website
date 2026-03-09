@@ -14,9 +14,7 @@ import resumeAnalyzerImage from "@/assets/resume-analyzer-new.png";
 import excelDashboardImage from "@/assets/excel-dashboard.png";
 import chromaticImage from "@/assets/chromatic color.png";
 import dataCleaningImage from "@/assets/data cleaining.png";
-import chromaticVideo from "@/assets/chromatic color .mp4";
-import uiHubVideo from "@/assets/UI HUB NEW.mp4";
-import dataWaveVideo from "@/assets/data wave.mp4";
+import uiHubImage from "@/assets/UI HUB.png";
 
 const projects = [
   {
@@ -32,9 +30,9 @@ const projects = [
       "Clean, responsive, and developer-friendly interface",
     ],
     tech: ["React", "Node.js", "Tailwind CSS", "Framer Motion", "AI APIs"],
-    github: "https://github.com/jainil224",
+    github: "https://github.com/jainil224/UI-HUB-",
     live: "https://ui-hub-design.vercel.app/",
-    video: uiHubVideo,
+    image: uiHubImage,
   },
   {
     title: "DataWeave AI",
@@ -49,7 +47,7 @@ const projects = [
     tech: ["React", "Node.js", "AI APIs", "Excel Processing"],
     github: "https://github.com/jainil224",
     live: "https://smartdataclean-ai.vercel.app/",
-    video: dataWaveVideo,
+    image: dataCleaningImage,
   },
   {
     title: "Chromatic Color Palettes",
@@ -64,7 +62,7 @@ const projects = [
     tech: ["HTML", "JS", "React", "Tailwind CSS", "Vite", "Supabase"],
     github: "https://github.com/jainil224/Chromatic",
     live: "https://chromatic-colorpalette.vercel.app/",
-    video: chromaticVideo,
+    image: chromaticImage,
   },
   {
     title: "Resume Analyzer",
@@ -137,37 +135,22 @@ export const ProjectsSection = () => {
                 gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
               >
                 <div className="flex flex-col lg:flex-row w-full border-none bg-transparent">
-                  {/* Project Image/Video - Left Side */}
-                  {(project.image || project.video) && (
+                  {/* Project Image - Left Side */}
+                  {project.image && (
                     <div
                       className="relative w-full lg:w-1/2 overflow-hidden bg-black/20 flex items-center justify-center p-8 group-hover:bg-black/30 transition-colors cursor-pointer"
                       onClick={() => setSelectedMedia({
-                        src: (project.video || project.image) as string,
+                        src: project.image as string,
                         title: project.title,
-                        type: project.video ? "video" : "image"
+                        type: "image"
                       })}
                     >
                       <div className="relative z-10 w-full h-full max-h-[400px] flex items-center justify-center group/media">
-                        {project.video ? (
-                          <video
-                            key={project.video}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
-                          >
-                            <source src={project.video} type="video/mp4" />
-                            Your browser does not support the video tag.
-                          </video>
-                        ) : (
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
-                          />
-                        )}
-
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-auto object-contain max-h-full rounded-lg shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
+                        />
                       </div>
                     </div>
                   )}
