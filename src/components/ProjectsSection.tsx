@@ -168,13 +168,6 @@ export const ProjectsSection = () => {
                           />
                         )}
 
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-black/0 group-hover/media:bg-black/40 transition-all duration-300 flex items-center justify-center opacity-0 group-hover/media:opacity-100 rounded-lg">
-                          <div className="bg-primary/90 text-primary-foreground px-4 py-2 rounded-full flex items-center gap-2 transform translate-y-4 group-hover/media:translate-y-0 transition-transform duration-300">
-                            <ZoomIn size={18} />
-                            <span className="font-semibold text-sm">Full View</span>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   )}
