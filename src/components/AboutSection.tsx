@@ -11,19 +11,19 @@ const infoCards = [
     icon: User,
     title: "Who I Am",
     description:
-      "I am Jainil Patel, an enthusiastic and dedicated aspiring data analyst. I have a strong passion for learning and exploring new data-driven insights that help solve real-world problems.",
+      "I am Jainil Patel, a modern web developer and creative UI/UX designer. I combine developer creativity and technical innovation to construct premium interactive web animation systems and immersive experiences.",
   },
   {
     icon: GraduationCap,
-    title: "Education",
+    title: "Education & Growth",
     description:
-      "Currently pursuing my studies at Parul University, batch of 2027, with a keen interest in data analysis, visualization, and problem-solving.",
+      "Currently studying at Parul University, Class of 2027, where I research state-of-the-art frontend frameworks, motion-based user experiences, and high-performance Tailwind CSS portfolios.",
   },
   {
     icon: Target,
-    title: "Career Objective",
+    title: "Design Philosophy",
     description:
-      "Aspiring professional seeking an entry-level role to apply my skills in Power BI, Excel, Python, DSA, and Web Development to analyze data, build efficient solutions, and contribute to data-driven decision-making.",
+      "I aim to elevate user engagement through animation and responsive web design. I draw interactive web design inspiration from physics-based effects like the Google Antigravity effect to create memorable interfaces.",
   },
 ];
 
