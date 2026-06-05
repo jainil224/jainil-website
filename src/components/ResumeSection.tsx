@@ -21,7 +21,7 @@ export const ResumeSection = () => {
   const [showPreview, setShowPreview] = useState(false);
 
   // Replace with your actual resume PDF URL
-  const resumeUrl = "/Jainil_Resume.pdf";
+  const resumeUrl = "/resume_jainil.pdf";
 
   return (
     <section id="resume" className="py-24 relative" ref={ref}>
