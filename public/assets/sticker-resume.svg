@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+    <!-- Backing/White Border Shadow and Outline -->
+    <path d="M 25 15 
+             L 80 15 
+             L 95 30 
+             L 95 105 
+             A 10 10 0 0 1 85 115 
+             L 35 115 
+             A 10 10 0 0 1 25 105 
+             Z" 
+          fill="#ffffff" 
+          stroke="#16151f" 
+          stroke-width="12" 
+          stroke-linejoin="round" />
+    
+    <!-- Paper Sheet Color Fill (Using a beautiful lavender/purple) -->
+    <path d="M 30 20 
+             L 75 20 
+             L 90 35 
+             L 90 100 
+             A 5 5 0 0 1 85 105 
+             L 35 105 
+             A 5 5 0 0 1 30 100 
+             Z" 
+          fill="#C77DFF" 
+          stroke="#16151f" 
+          stroke-width="6" 
+          stroke-linejoin="round" />
+          
+    <!-- Folded Corner -->
+    <path d="M 75 20 L 75 35 L 90 35 Z" fill="#e8d5ff" stroke="#16151f" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Text Lines -->
+    <path d="M 42 45 L 78 45" stroke="#16151f" stroke-width="5" stroke-linecap="round" />
+    <path d="M 42 60 L 78 60" stroke="#16151f" stroke-width="5" stroke-linecap="round" />
+    <path d="M 42 75 L 70 75" stroke="#16151f" stroke-width="5" stroke-linecap="round" />
+    <path d="M 42 90 L 60 90" stroke="#16151f" stroke-width="5" stroke-linecap="round" />
+    
+    <!-- Decorative star overlay on the bottom right -->
+    <path d="M 88 85 L 90 92 L 97 94 L 90 96 L 88 103 L 86 96 L 79 94 L 86 92 Z" fill="#FFD700" stroke="#16151f" stroke-width="2" stroke-linejoin="round" />
+</svg>

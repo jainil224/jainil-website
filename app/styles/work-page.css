@@ -1,0 +1,198 @@
+/* ─── Work Page Layout & Grid ─────────────────────────────────────────────── */
+.work-page-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 140px 40px 100px;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px 50px;
+    margin-top: 60px;
+}
+
+@media (max-width: 992px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
+
+/* ─── Work Project Card ────────────────────────────────────────────────────── */
+.work-project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-decoration: none;
+    color: inherit;
+    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
+}
+
+.work-project-card__img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.work-project-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.work-project-card__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.work-project-card__title {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 850;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--color-dark);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+/* Hover effects */
+.work-project-card:hover .work-project-card__img {
+    transform: scale(1.04) rotate(1deg);
+}
+
+.work-project-card:hover .work-project-card__title {
+    color: var(--color-darkblue);
+}
+
+/* ─── Category Badges ─── */
+.work-project-card__badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border-bottom-left-radius: 2px;
+    text-transform: lowercase;
+    transition: transform 0.25s ease;
+}
+
+/* Match pop-out badge colors */
+.work-project-card__badge.badge-maroon {
+    background-color: #B1536E;
+    color: var(--color-white);
+}
+
+.work-project-card__badge.badge-pink {
+    background-color: #EBB6F4;
+    color: var(--color-dark);
+}
+
+.work-project-card__badge.badge-green {
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+.work-project-card__badge.badge-orange {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+}
+
+.work-project-card__badge.badge-lightblue {
+    background-color: var(--color-lightblue);
+    color: var(--color-dark);
+}
+
+.work-project-card__badge.badge-lightgreen {
+    background-color: var(--color-lightgreen);
+    color: var(--color-dark);
+}
+
+/* ─── Card Download Button ─── */
+.work-project-card__download-btn {
+    margin-top: 12px;
+    padding: 10px 24px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    text-transform: lowercase;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.work-project-card:hover .work-project-card__download-btn {
+    background-color: var(--color-green);
+    transform: translateY(-2px);
+}
+
+/* ─── Certificate Previews (Contain Instead of Crop) ─── */
+.cert-card .work-project-card__img-wrap,
+.certs-sec-card .work-project-card__img-wrap {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cert-card .work-project-card__img,
+.certs-sec-card .work-project-card__img {
+    object-fit: contain !important;
+    padding: 16px;
+    background-color: #ffffff;
+}
+
+/* Detail View Hero Image Certificate Containment */
+.cert-hero-image-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    max-height: 650px;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 80px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cert-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    padding: 24px;
+    background-color: #ffffff;
+}
+
+/* ─── Certificates Section Homepage Wrapper ─── */
+.certs-sec-wrapper {
+    padding: 80px 40px 100px;
+}
+
+/* ─── Responsive Adjustments (Mobile/Tablet) ─── */
+@media (max-width: 768px) {
+    .work-page-wrapper {
+        padding: 100px 20px 60px !important;
+    }
+    
+    .certs-sec-wrapper {
+        padding: 60px 20px 80px !important;
+    }
+
+    .resume-iframe-wrap {
+        height: 520px !important;
+    }
+}
+

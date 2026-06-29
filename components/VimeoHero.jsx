@@ -1,0 +1,183 @@
+'use client';
+
+import { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollVideo from './ScrollVideo';
+
+export default function VimeoHero() {
+    const titleRef = useRef(null);
+    const [leftLoaded, setLeftLoaded] = useState(false);
+    const [rightLoaded, setRightLoaded] = useState(false);
+    const [startAnimation, setStartAnimation] = useState(false);
+
+    useEffect(() => {
+        const leftImg = new Image();
+        const rightImg = new Image();
+
+        if (window.innerWidth <= 768) {
+            leftImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782724985/ChatGPT_Image_Jun_29_2026_02_36_56_PM-split_xvykmv.png";
+            rightImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782724986/ChatGPT_Image_Jun_29_2026_02_36_56_PM-split_2_xkchwa.png";
+        } else {
+            leftImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782711635/hero_section-right_zcps4k.png";
+            rightImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782711635/hero_section-left_slwnwf.png";
+        }
+
+        leftImg.onload = () => setLeftLoaded(true);
+        rightImg.onload = () => setRightLoaded(true);
+
+        // Fallback timer: start animation anyway after 2.5s if images take too long to load
+        const timer = setTimeout(() => {
+            setStartAnimation(true);
+        }, 2500);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        if (leftLoaded && rightLoaded) {
+            setStartAnimation(true);
+        }
+    }, [leftLoaded, rightLoaded]);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (!startAnimation) {
+            // Keep elements in their initial states
+            gsap.set('.vimeo-hero__word', { y: 60, opacity: 0 });
+            gsap.set('.navbar', { y: -60, opacity: 0 });
+            gsap.set('.home-header__title-line-svg', { scale: 0.8, opacity: 0 });
+            return;
+        }
+
+        // Reset scroll position and pin states
+        const lenis = window.__lenis;
+        if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+        } else {
+            window.scrollTo(0, 0);
+        }
+
+        const tl = gsap.timeline();
+
+        // 1. Curtains split animation
+        tl.to('.curtain-left', {
+            xPercent: -100,
+            duration: 1.0,
+            ease: 'power3.inOut'
+        }, 0.2)
+        .to('.curtain-right', {
+            xPercent: 100,
+            duration: 1.0,
+            ease: 'power3.inOut'
+        }, 0.2);
+
+        // 2. Navbar slide down
+        tl.to('.navbar', {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out'
+        }, 0.7);
+
+        // 3. Hero headline words slide/fade in
+        tl.to('.vimeo-hero__word', {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.04,
+            ease: 'power3.out'
+        }, 0.8);
+
+        // 4. Fade/Pop the oval underline
+        tl.to('.home-header__title-line-svg', {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            ease: 'back.out(1.5)'
+        }, '-=0.3');
+
+        // 5. Hide the curtains entirely to release page hit-testing / clicks
+        tl.set('.hero-curtain-overlay', { display: 'none' });
+
+        return () => {
+            tl.kill();
+        };
+    }, [startAnimation]);
+
+    return (
+        <>
+            {/* Scroll-to-seek HLS video background */}
+            <ScrollVideo src="https://player.cloudinary.com/embed/?cloud_name=dsn0ks2hl&public_id=upscaled-video_szabwc" />
+
+            {/* ── Main hero container ── */}
+            <div className="vimeo-hero">
+                {/* Gradient fade */}
+                <div className="vimeo-hero__fade" />
+
+                {/* ① Headline — bottom left, word-by-word layout */}
+                <div className="home-header__title">
+                    <h1 className="vimeo-hero__title" ref={titleRef}>
+
+                        {/* "I" */}
+                        <span className="vimeo-hero__word">I </span>
+
+                        {/* "build" + ⑤ smiley (no animation) */}
+                        <span className="vimeo-hero__word is--relative">
+                            <span>build </span>
+                            <div className="home-header__smiley">
+                                <img
+                                    src="/assets/VimeoHero SVG/smiley-face.svg"
+                                    alt=""
+                                    className="home-header__smiley-svg"
+                                />
+                            </div>
+                        </span>
+
+                        {/* "modern" */}
+                        <span className="vimeo-hero__word">modern </span>
+
+                        {/* "websites" italic */}
+                        <span className="vimeo-hero__word"><em>websites </em></span>
+
+                        <div style={{ flexBasis: '100%', height: 0 }} />
+
+                        {/* "for" */}
+                        <span className="vimeo-hero__word">for </span>
+
+                        {/* "the" */}
+                        <span className="vimeo-hero__word">the </span>
+
+                        {/* "future." + ⑤ pink star (no spin) + oval underline */}
+                        <span className="vimeo-hero__word is--relative">
+                            <div className="home-header__star">
+                                <div className="home-header__star-inner">
+                                    <img
+                                        src="/assets/VimeoHero SVG/pink-star.svg"
+                                        alt=""
+                                        className="home-header__star-svg"
+                                    />
+                                </div>
+                            </div>
+                            {/* Oval underline */}
+                            <img
+                                src="/assets/VimeoHero SVG/oval-underline.svg"
+                                alt=""
+                                className="home-header__title-line-svg"
+                            />
+                            <span>future.</span>
+                        </span>
+
+                    </h1>
+                </div>
+            </div>
+
+            {/* Curtain Overlay */}
+            <div className="hero-curtain-overlay">
+                <div className="curtain-panel curtain-left" />
+                <div className="curtain-panel curtain-right" />
+            </div>
+        </>
+    );
+}
