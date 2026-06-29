@@ -21,9 +21,16 @@ export default function SmoothScroll() {
         gsap.ticker.lagSmoothing(0);
 
         // Dynamic Tab Title Change
-        const originalTitle = document.title;
+        let lastActiveTitle = document.title;
         const handleVisibility = () => {
-            document.title = document.hidden ? "Hey, over here! 👋 - Data Analyst & Full Stack Developer" : originalTitle;
+            if (document.hidden) {
+                if (!document.title.startsWith("Hey, over here!")) {
+                    lastActiveTitle = document.title;
+                }
+                document.title = "Hey, over here! 👋 - Data Analyst & Full Stack Developer";
+            } else {
+                document.title = lastActiveTitle;
+            }
         };
         document.addEventListener('visibilitychange', handleVisibility);
 
