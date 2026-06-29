@@ -104,8 +104,46 @@ export default function VimeoHero() {
         // 5. Hide the curtains entirely to release page hit-testing / clicks
         tl.set('.hero-curtain-overlay', { display: 'none' });
 
+        // 6. Scroll-linked parallax & fade out animation for title elements
+        const scrollTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.vimeo-hero',
+                start: 'top top',
+                end: '+=100%',
+                scrub: true,
+            }
+        });
+
+        scrollTl.to('.vimeo-hero__word', {
+            y: -100,
+            opacity: 0,
+            stagger: 0.02,
+            ease: 'none'
+        }, 0)
+        .to('.home-header__title-line-svg', {
+            scaleX: 0,
+            opacity: 0,
+            transformOrigin: 'left center',
+            ease: 'none'
+        }, 0)
+        .to('.home-header__smiley-svg', {
+            rotation: 180,
+            x: -60,
+            y: -60,
+            opacity: 0,
+            ease: 'none'
+        }, 0)
+        .to('.home-header__star-svg', {
+            rotation: 360,
+            x: 60,
+            y: -60,
+            opacity: 0,
+            ease: 'none'
+        }, 0);
+
         return () => {
             tl.kill();
+            scrollTl.kill();
             // Safety measure: ensure overlay is hidden if component updates or unmounts during animation
             gsap.set('.hero-curtain-overlay', { display: 'none' });
         };
