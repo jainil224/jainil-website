@@ -15,6 +15,12 @@ export default function VimeoHero() {
         const leftImg = new Image();
         const rightImg = new Image();
 
+        // Register handlers BEFORE setting src to handle cached images correctly
+        leftImg.onload = () => setLeftLoaded(true);
+        leftImg.onerror = () => setLeftLoaded(true); // Fallback immediately if image fails to load
+        rightImg.onload = () => setRightLoaded(true);
+        rightImg.onerror = () => setRightLoaded(true); // Fallback immediately if image fails to load
+
         if (window.innerWidth <= 768) {
             leftImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782724985/ChatGPT_Image_Jun_29_2026_02_36_56_PM-split_xvykmv.png";
             rightImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782724986/ChatGPT_Image_Jun_29_2026_02_36_56_PM-split_2_xkchwa.png";
@@ -23,13 +29,10 @@ export default function VimeoHero() {
             rightImg.src = "https://res.cloudinary.com/dgqd54pbl/image/upload/v1782711635/hero_section-left_slwnwf.png";
         }
 
-        leftImg.onload = () => setLeftLoaded(true);
-        rightImg.onload = () => setRightLoaded(true);
-
-        // Fallback timer: start animation anyway after 2.5s if images take too long to load
+        // Fallback timer: start animation anyway after 800ms if images take too long to load
         const timer = setTimeout(() => {
             setStartAnimation(true);
-        }, 2500);
+        }, 800);
 
         return () => clearTimeout(timer);
     }, []);
@@ -103,6 +106,8 @@ export default function VimeoHero() {
 
         return () => {
             tl.kill();
+            // Safety measure: ensure overlay is hidden if component updates or unmounts during animation
+            gsap.set('.hero-curtain-overlay', { display: 'none' });
         };
     }, [startAnimation]);
 
