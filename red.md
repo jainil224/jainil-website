@@ -1,164 +1,143 @@
-# 🌐 jainil. — Personal Portfolio Website
+# 🌐 jainil. — Premium Personal Portfolio Website
 
 > **Jainil Patel** · Full Stack Developer & Data Analyst · Gujarat, India
 
-A premium personal portfolio built with **Next.js**, **GSAP**, and vanilla CSS — featuring buttery-smooth animations, interactive navbar popovers, scroll-triggered sticker effects, and a full resume viewer. Deployed on **Vercel**.
+A high-fidelity, premium personal portfolio built with **Next.js**, **GSAP**, and vanilla CSS — featuring buttery-smooth custom scroll-linked animations, interactive navbar popovers, elastic layout shifts, scroll-triggered sticker physics, and a full embedded resume viewer.
+
+---
+
+## 📸 Website Visual Showcase
+
+Here is a visual breakdown of the key layout sections of the website:
+
+<table>
+  <tr>
+    <td align="center"><b>Header Hero Section</b><br/><img src="https://github.com/user-attachments/assets/195d1543-3e28-4678-8545-567ca9b08767" alt="Header Section" width="100%" /></td>
+    <td align="center"><b>MotionCard Section</b><br/><img src="https://github.com/user-attachments/assets/14d46fcf-f5d4-4b32-ac8e-e99eef1e964f" alt="MotionCard Section" width="100%" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Interactive Service Cards</b><br/><img src="https://github.com/user-attachments/assets/cb80f406-998e-4853-9ea5-7dec87952117" alt="Service Card Section" width="100%" /></td>
+    <td align="center"><b>Double Marquee (Brand Showcase)</b><br/><img src="https://github.com/user-attachments/assets/9ca5af12-5e0b-4b81-954c-1dcb484c671a" alt="Double Marquee Section" width="100%" /></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><b>Footer Section (Interactive Stickers & Credits)</b><br/><img src="https://github.com/user-attachments/assets/1f0c8b9c-50c7-452e-af4c-23cadcdb58c0" alt="Footer Section" width="100%" /></td>
+  </tr>
+</table>
 
 ---
 
 ## 🚀 Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | JavaScript (JSX) |
-| Animations | GSAP + ScrollTrigger |
-| Smooth Scroll | Lenis (via SmoothScroll component) |
-| Video Hero | Vimeo embed |
-| Styling | Vanilla CSS + CSS Variables |
-| Deployment | Vercel |
-| Fonts | Epilogue (900 weight wordmark) |
+| Component | Technology | Description |
+|---|---|---|
+| **Core Framework** | Next.js 14 (App Router) | High-performance React framework for server-side rendering, client transitions, and routing. |
+| **Language** | JavaScript (JSX) | Modular, components-driven logic. |
+| **Animations** | GSAP + ScrollTrigger | GreenSock Animation Platform to power high-fidelity scroll, hover, and timeline animations. |
+| **Smooth Scroll** | Lenis | Integrated with GSAP ticker for seamless physics-based inertia scrolling. |
+| **Interactive Video** | Vimeo Hero Player | Full-screen background player rendering Vimeo stream. |
+| **Styling** | Vanilla CSS + Variables | A pure CSS design system utilizing CSS Variables—completely free of styling framework overhead. |
+| **Fonts** | Epilogue & DM Sans | Self-hosted typography files rendering high-impact headers and body text. |
 
 ---
 
-## 📁 Project Structure
+## 📁 Directory Architecture
 
-```
+```text
 jainil-website/
 ├── app/
-│   ├── page.jsx              # Home page (hero, services, resume section)
-│   ├── layout.jsx            # Root layout + metadata + PageTransitionOverlay
-│   ├── globals.css           # Global CSS variables & base styles
-│   ├── styles/               # Additional style sheets
-│   ├── work/                 # /work and /work/[slug] pages
-│   └── certificates/         # /certificates and /certificates/[slug] pages
+│   ├── page.jsx                  # Main index landing page
+│   ├── layout.jsx                # Layout definitions, root HTML, and metadata
+│   ├── globals.css               # Primary styling entry point
+│   ├── styles/                   # Section-specific CSS partial files
+│   │   ├── base.css              # Custom font declarations, CSS variables, resets
+│   │   ├── navbar.css            # Navigation bar and logo styles
+│   │   ├── hero.css              # Main section titles and SVG underlines
+│   │   ├── vimeo-hero.css        # Vimeo background player configuration
+│   │   ├── motion-cards.css      # MotionCard fling grid styles
+│   │   ├── showreel.css          # Showreel display layout
+│   │   ├── cards.css             # Service card colors and overlays
+│   │   ├── marquee.css           # Brand marquee styles
+│   │   ├── footer.css            # Footer positioning, credits, and stickers
+│   │   ├── cursor.css            # Custom cursor blob styling
+│   │   └── responsive.css        # Fluid breakpoints for mobile and tablet views
+│   ├── work/                     # Projects lists and dynamic routing ([slug])
+│   └── certificates/             # Credentials lists and dynamic routing ([slug])
 ├── components/
-│   ├── Navbar.jsx            # Sticky nav with animated work/cert popovers
-│   ├── VimeoHero.jsx         # Full-screen Vimeo video hero section
-│   ├── HorizontalWords.jsx   # Horizontal scroll word reveal
-│   ├── ServiceCards.jsx      # Interactive stacked service cards
-│   ├── Showreel.jsx          # Showreel / reel section
-│   ├── DoubleMarquee.jsx     # Dual-direction animated marquee (tech brands)
-│   ├── CertificatesSection.jsx # Certificates grid section
-│   ├── Footer.jsx            # Footer with stickers, socials, credits pop-out
-│   ├── CursorBubble.jsx      # Custom SVG cursor bubble
-│   ├── SmoothScroll.jsx      # Lenis smooth scroll wrapper
-│   ├── PageTransitionOverlay.jsx # Full-screen page transition scribble
-│   ├── TransitionScribble.jsx    # SVG scribble animation
-│   ├── MotionCards.jsx       # Motion / tilt cards
-│   ├── ScrollVideo.jsx       # Scroll-scrubbed video
-│   └── SvgSymbols.jsx        # Shared SVG <defs> symbols
+│   ├── Navbar.jsx                # Sticky header with hover popovers
+│   ├── VimeoHero.jsx             # Top section background player
+│   ├── HorizontalWords.jsx       # Scroll-scrubbed text reveal
+│   ├── ServiceCards.jsx          # Stacked service cards with fan-out animation
+│   ├── Showreel.jsx              # Custom video showreel section
+│   ├── DoubleMarquee.jsx         # Custom dual-direction endless scrolling marquee
+│   ├── CertificatesSection.jsx   # Grid of professional credentials
+│   ├── Footer.jsx                # Dynamic footer with wiggling elements and stickers
+│   ├── CursorBubble.jsx          # SVG cursor-tracker layout
+│   ├── SmoothScroll.jsx          # Lenis smooth scroll initializer
+│   ├── PageTransitionOverlay.jsx # Fullscreen SVG scribble screen transition
+│   ├── TransitionScribble.jsx    # Overlay SVG container
+│   ├── MotionCards.jsx           # Physics-based mouse fling cards
+│   ├── ScrollVideo.jsx           # Custom video controller mapped to scroll position
+│   └── SvgSymbols.jsx            # Reusable SVG symbol templates
 ├── lib/
-│   ├── data.js               # Brands, service cards, social icons, wiggle config
-│   ├── projectsData.js       # All projects with slug, title, tech stack, images
-│   └── certificatesData.js   # All certificates with slug, category, images
+│   ├── data.js                   # Static data (social icons, service card config, wiggles)
+│   ├── projectsData.js           # Catalog of projects, descriptions, tags, and images
+│   └── certificatesData.js       # Catalog of certificates and verification details
 └── public/
-    ├── assets/               # All SVGs (stickers, navbar blobs, cursor, etc.)
-    └── resume_jainil.pdf     # Resume file (viewable + downloadable inline)
+    ├── assets/                   # Stickers, icons, pointer SVGs
+    └── resume_jainil.pdf         # Professional Resume PDF (embed + download)
 ```
 
 ---
 
-## 📄 Pages
+## 🎨 Key Features & Animations
 
-### `/` — Home
-- **Navbar** with hover-activated project & certificate popovers (GSAP scale-out from blob icon)
-- **VimeoHero** — Full-screen background Vimeo video
-- **HorizontalWords** — Scroll-linked horizontal text reveal
-- **Showreel** section
-- **ServiceCards** — 5 interactive stacked cards (brand, social, quick facts, design, what I love) with elastic card-fan hover effect
-- **Resume Viewer** — Inline PDF iframe with download button + GSAP pop-in sticker
-- **CertificatesSection** — Certificate cards
-- **DoubleMarquee** — Dual-direction marquee showcasing: React, Next.js, Node.js, Python, MongoDB, Tailwind CSS, Three.js, JavaScript, Docker
-- **Footer** — Location (Gujarat, India), email (`jainil11199@gmail.com`), LinkedIn / Instagram / GitHub, credits pop-out box, footer stickers
+### 1. Navbar Work & Certificate Popovers
+* **Interactive Blobs:** Left and right navbar controls utilize SVG blobs (`/assets/Navbar SVG/nav-work-blob.svg`) that spin `360deg` on hover using GSAP.
+* **Scale-Out Popovers:** The popovers emerge elastically from the exact center of their respective blob icons, staggering the project/certificate listings smoothly.
 
-### `/work` — All Projects
-All projects listed from `lib/projectsData.js`
+### 2. Elastic Service Cards (`components/ServiceCards.jsx`)
+* **Elastic Spread:** Desktop users hovering over the card deck trigger a physics-based horizontal fan-out using `elastic.out(1, 0.5)`. Nearby cards move aside dynamically to prevent overlapping.
+* **Scroll Stack (Mobile):** On mobile viewports, the hover effect disables, and the layout falls back to a clean CSS-flex scrolling layout.
 
-### `/work/[slug]` — Single Project
-Dynamic route for each project detail page
+### 3. Interactive Footer Stickers & Proximity Push (`components/Footer.jsx`)
+* **Scroll Pop-Up:** Decorative cartoon stickers slide up and rotate elastically (`back.out(1.7)`) as the footer enters the viewport.
+* **Cursor Velocity Interaction:** Proximity detection calculates cursor distance and speed. Moving the mouse rapidly past a sticker pushes it away, which then snaps back to its original rotation via GSAP.
 
-### `/certificates` — All Certificates
-All certificates from `lib/certificatesData.js`
-
-### `/certificates/[slug]` — Single Certificate
-Dynamic route for each certificate detail
+### 4. Custom Cursor Follower (`components/CursorBubble.jsx`)
+* A custom SVG cursor follows the mouse smoothly using GSAP `quickTo()`. Over interactive sections, the cursor transforms into a bubble displaying contextual copy.
 
 ---
 
-## 🎨 Key Design Details
+## 🚀 Setup & Execution
 
-- **Colour palette**: CSS variables (`--color-green`, `--color-darkblue`, `--color-orange`, `--color-maroon`, `--color-pink`, `--color-lightblue`, `--color-lightgreen`, `--color-dark`)
-- **Typography**: Epilogue (900 weight) for wordmarks; lowercase aesthetic throughout
-- **Wordmark**: `jainil.` — displayed in footer (clamp `5rem`→`15rem`), navbar center, and page title
-- **Cursor**: Custom SVG cursor (`/assets/Cursor SVG/cursor-pointer.svg`)
-- **Stickers**: Cartoon SVG stickers (smiley, heart, hands, 100, camera, boom, resume) with GSAP scroll-triggered pop-in and cursor velocity push
-- **Wiggle system**: Consistent `initWiggle()` function across Navbar and Footer for micro-interaction on hover
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
----
+2. **Run local dev environment:**
+   ```bash
+   npm run dev
+   ```
+   *Access local server at `http://localhost:3000`*
 
-## ⚙️ Animation Architecture
-
-| Effect | Implementation |
-|---|---|
-| Navbar popover | GSAP `scale` from blob-icon origin + item stagger |
-| Card fan hover | GSAP elastic spread with `elastic.out(1, 0.5)` |
-| Footer stickers | ScrollTrigger `back.out(1.7)` + cursor velocity proximity push |
-| Credits pop-out | GSAP physical width/height grow (not scale) + text slide-up |
-| Resume sticker | ScrollTrigger `back.out(1.7)` with `rotation: 15` |
-| Page transitions | SVG scribble overlay (TransitionScribble + PageTransitionOverlay) |
-| Marquee underlines | SVG `strokeDashoffset` draw on scroll |
-| Smooth scroll | Lenis (SmoothScroll component) |
-| Navbar colour | Scroll-position-based `on-dark` / `on-light` class toggling |
+3. **Build production bundle:**
+   ```bash
+   npm run build
+   ```
 
 ---
 
-## 👤 About Jainil
+## 💼 Featured Projects Catalog
 
-- **Name**: Jainil Patel
-- **Email**: jainil11199@gmail.com
-- **Location**: Gujarat, India
-- **Focus**: Full Stack Development, AI & Machine Learning, UI/UX Design
-- **Status**: Open to Opportunities
-- **LinkedIn**: [jainil-patel2224](https://www.linkedin.com/in/jainil-patel2224/)
-- **Instagram**: [jainilll_2208](https://www.instagram.com/jainilll_2208/)
-- **GitHub**: [jainil224](https://github.com/jainil224)
-
----
-
-## 🛠️ Development
-
-```bash
-# Install dependencies
-npm install
-
-# Run local dev server
-npm run dev
-
-# Build for production
-npm run build
-```
-
-> Dev server runs on `http://localhost:3000`
-
----
-
-## 📦 Deployment
-
-Deployed via **Vercel** (configured via `vercel.json`). Push to `main` triggers automatic deployment.
-
----
-
-## 📜 Projects Showcase
-
-| Project | Category | Year |
+| Project Slug | Specialization | Tech Stack |
 |---|---|---|
-| UI Hub Design | UI Design | 2026 |
-| Excel Financial Dashboard | Data Analysis | 2024 |
-| Care Connect AI | Health Tech | 2026 |
-| UI Motion Studio | Motion Design | 2025 |
-| Chromatic Color Palette | Design Tool | 2025 |
+| **ui-hub-design** | UI/UX Design | React, Next.js, CSS Modules, Figma API |
+| **excel-financial-dashboard** | Data Analysis | Excel, VBA, Power Query, Pivot Tables |
+| **care-connect-ai** | Health Tech | Next.js, FastAPI, PyTorch, Tailwind CSS |
+| **ui-motion-studio** | Motion Design | Next.js, GSAP, Framer Motion, WebGL |
+| **chromatic-color-palette** | Web Tooling | React, CSS Variables, LocalStorage |
 
 ---
 
-*Design by Jainil · Code by Jainil*
+*Design & Code by Jainil Patel*
