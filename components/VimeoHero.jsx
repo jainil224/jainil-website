@@ -11,6 +11,23 @@ export default function VimeoHero() {
     const [leftLoaded, setLeftLoaded] = useState(false);
     const [rightLoaded, setRightLoaded] = useState(false);
     const [startAnimation, setStartAnimation] = useState(false);
+    const [colorIndex, setColorIndex] = useState(0);
+
+    const colors = [
+        [0, 0.8235, 1], // #00d2ff
+        [0.1647, 0.0157, 0.3098], // #2a044f
+        [0.9412, 0.7451, 0.9804], // #f0befa
+        [0.6275, 0.1961, 0.3529], // #a0325a
+        [0.1608, 0.4471, 0.3725], // #29725f
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+        }, 3000); // Change color every 3 seconds
+        return () => clearInterval(interval);
+    }, []);
+
 
     useEffect(() => {
         const leftImg = new Image();
@@ -156,7 +173,7 @@ export default function VimeoHero() {
                 {/* Dither background */}
                 <div className="vimeo-hero__background-dither">
                     <Dither
-                        waveColor={[0.5, 0.5, 0.5]}
+                        waveColor={colors[colorIndex]}
                         disableAnimation={false}
                         enableMouseInteraction={true}
                         mouseRadius={0.3}
