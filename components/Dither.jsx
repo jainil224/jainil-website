@@ -245,7 +245,7 @@ function DitheredWaves({
         />
       </mesh>
 
-      <EffectComposer>
+      <EffectComposer disableNormalPass>
         <RetroEffect colorNum={colorNum} pixelSize={pixelSize} />
       </EffectComposer>
 
@@ -277,7 +277,7 @@ export default function Dither({
       className="dither-container"
       camera={{ position: [0, 0, 6] }}
       dpr={1}
-      gl={{ antialias: true, preserveDrawingBuffer: true }}
+      gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}
