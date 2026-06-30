@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/postprocessing": "^3.0.4",
     "gsap": "^3.12.5",
     "hls.js": "^1.6.16",
     "lenis": "^1.1.14",
     "next": "15.2.8",
+    "postprocessing": "^6.39.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.185.0"
   },
   "devDependencies": {
     "eslint": "^9.39.4",

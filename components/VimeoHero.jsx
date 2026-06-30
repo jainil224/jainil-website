@@ -3,7 +3,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ScrollVideo from './ScrollVideo';
+import dynamic from 'next/dynamic';
+const Dither = dynamic(() => import('./Dither'), { ssr: false });
 
 export default function VimeoHero() {
     const titleRef = useRef(null);
@@ -148,14 +149,25 @@ export default function VimeoHero() {
             gsap.set('.hero-curtain-overlay', { display: 'none' });
         };
     }, [startAnimation]);
-
     return (
         <>
-            {/* Scroll-to-seek HLS video background */}
-            <ScrollVideo src="https://player.cloudinary.com/embed/?cloud_name=dsn0ks2hl&public_id=upscaled-video_szabwc" />
-
             {/* ── Main hero container ── */}
             <div className="vimeo-hero">
+                {/* Dither background */}
+                <div className="vimeo-hero__background-dither">
+                    <Dither
+                        waveColor={[0.16, 0.45, 0.37]}
+                        disableAnimation={false}
+                        enableMouseInteraction={true}
+                        mouseRadius={0.8}
+                        colorNum={4.0}
+                        pixelSize={2.0}
+                        waveAmplitude={0.3}
+                        waveFrequency={3.0}
+                        waveSpeed={0.05}
+                    />
+                </div>
+
                 {/* Gradient fade */}
                 <div className="vimeo-hero__fade" />
 
