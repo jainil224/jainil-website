@@ -6,6 +6,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { EffectComposer, wrapEffect } from '@react-three/postprocessing';
 import { Effect } from 'postprocessing';
 import * as THREE from 'three';
+import { gsap } from 'gsap';
 
 import './Dither.css';
 
@@ -204,7 +205,18 @@ function DitheredWaves({
     }
   }, [size, gl]);
 
-  const prevColor = useRef([...waveColor]);
+  // Handle color transitions beautifully with GSAP
+  useEffect(() => {
+    const u = waveUniformsRef.current;
+    gsap.to(u.waveColor.value, {
+      r: waveColor[0],
+      g: waveColor[1],
+      b: waveColor[2],
+      duration: 1.8,
+      ease: 'power2.inOut',
+    });
+  }, [waveColor]);
+
   useFrame(({ clock }) => {
     const u = waveUniformsRef.current;
 
@@ -216,8 +228,7 @@ function DitheredWaves({
     if (u.waveFrequency.value !== waveFrequency) u.waveFrequency.value = waveFrequency;
     if (u.waveAmplitude.value !== waveAmplitude) u.waveAmplitude.value = waveAmplitude;
 
-    const targetColor = new THREE.Color(...waveColor);
-    u.waveColor.value.lerp(targetColor, 0.05);
+
     u.enableMouseInteraction.value = enableMouseInteraction ? 1 : 0;
     u.mouseRadius.value = mouseRadius;
 
