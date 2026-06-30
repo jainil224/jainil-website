@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable react/no-unknown-property */
 import { useRef, useEffect, forwardRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -128,7 +130,7 @@ vec3 dither(vec2 uv, vec3 color) {
 void mainImage(in vec4 inputColor, in vec2 uv, out vec4 outputColor) {
   vec2 normalizedPixelSize = pixelSize / resolution;
   vec2 uvPixel = normalizedPixelSize * floor(uv / normalizedPixelSize);
-  vec4 color = texture2D(inputBuffer, uvPixel);
+  vec4 color = texture(inputBuffer, uvPixel);
   color.rgb = dither(uv, color.rgb);
   outputColor = color;
 }
@@ -177,7 +179,7 @@ function DitheredWaves({
   mouseRadius
 }) {
   const mesh = useRef(null);
-  const mouseRef = useRef(new THREE.Vector2(-9999, -9999));
+  const mouseRef = useRef(new THREE.Vector2());
   const { viewport, size, gl } = useThree();
 
   const waveUniformsRef = useRef({
@@ -187,7 +189,7 @@ function DitheredWaves({
     waveFrequency: new THREE.Uniform(waveFrequency),
     waveAmplitude: new THREE.Uniform(waveAmplitude),
     waveColor: new THREE.Uniform(new THREE.Color(...waveColor)),
-    mousePos: new THREE.Uniform(new THREE.Vector2(-9999, -9999)),
+    mousePos: new THREE.Uniform(new THREE.Vector2(0, 0)),
     enableMouseInteraction: new THREE.Uniform(enableMouseInteraction ? 1 : 0),
     mouseRadius: new THREE.Uniform(mouseRadius)
   });
@@ -223,6 +225,7 @@ function DitheredWaves({
     u.mouseRadius.value = mouseRadius;
 
     if (enableMouseInteraction) {
+      // Lerp mouse pos for smoother interaction than jumpy movement
       u.mousePos.value.lerp(mouseRef.current, 0.1);
     }
   });
@@ -245,7 +248,7 @@ function DitheredWaves({
         />
       </mesh>
 
-      <EffectComposer disableNormalPass>
+      <EffectComposer>
         <RetroEffect colorNum={colorNum} pixelSize={pixelSize} />
       </EffectComposer>
 
@@ -253,6 +256,7 @@ function DitheredWaves({
         onPointerMove={handlePointerMove}
         position={[0, 0, 0.01]}
         scale={[viewport.width, viewport.height, 1]}
+        visible={false}
       >
         <planeGeometry args={[1, 1]} />
         <meshBasicMaterial transparent opacity={0} />
@@ -274,10 +278,10 @@ export default function Dither({
 }) {
   return (
     <Canvas
-      className="dither-container"
+      style={{ width: '100%', height: '100%', position: 'relative' }}
       camera={{ position: [0, 0, 6] }}
       dpr={1}
-      gl={{ antialias: true, preserveDrawingBuffer: true, alpha: true }}
+      gl={{ antialias: true, preserveDrawingBuffer: true }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}

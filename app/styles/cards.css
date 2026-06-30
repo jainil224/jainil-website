@@ -4,7 +4,7 @@
     width: 100%;
     max-width: 1400px;
     height: 650px;
-    margin: 100px auto 100px 100px;
+    margin: 100px auto;
     display: flex;
     justify-content: center;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
@@ -59,7 +59,7 @@
 .card-darkblue {
     background-color: var(--color-lightblue);
     color: var(--color-dark);
-    left: calc(50% - 430px);
+    left: calc(50% - 610px);
     top: 100px;
     transform: rotate(-5deg);
     z-index: 2;
@@ -68,7 +68,7 @@
 .card-orange {
     background-color: var(--color-orange);
     color: var(--color-dark);
-    left: calc(50% - 220px);
+    left: calc(50% - 310px);
     top: 20px;
     transform: rotate(5deg);
     z-index: 3;
@@ -76,7 +76,7 @@
 
 .card-maroon {
     background-color: var(--color-maroon);
-    left: calc(50% + 50px);
+    left: calc(50% - 10px);
     top: 30px;
     transform: rotate(-8deg);
     z-index: 4;
@@ -85,23 +85,13 @@
 .card-pink {
     background-color: var(--color-pink);
     color: var(--color-dark);
-    left: calc(50% + 320px);
+    left: calc(50% + 290px);
     top: 70px;
     transform: rotate(5deg);
     z-index: 5;
 }
 
-/* Expand hit area for middle cards to bridge gaps */
-.card-darkblue::after,
-.card-orange::after,
-.card-maroon::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -35px;
-    right: -35px;
-}
+
 
 /* Light card divider overrides */
 .card-pink .card-divider-svg,

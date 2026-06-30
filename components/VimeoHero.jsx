@@ -156,14 +156,13 @@ export default function VimeoHero() {
                 {/* Dither background */}
                 <div className="vimeo-hero__background-dither">
                     <Dither
-                        waveColor={[0.16, 0.45, 0.37]}
+                        waveColor={[0.5, 0.5, 0.5]}
                         disableAnimation={false}
                         enableMouseInteraction={true}
-                        mouseRadius={0.8}
-                        colorNum={4.0}
-                        pixelSize={2.0}
+                        mouseRadius={0.3}
+                        colorNum={4}
                         waveAmplitude={0.3}
-                        waveFrequency={3.0}
+                        waveFrequency={3}
                         waveSpeed={0.05}
                     />
                 </div>
