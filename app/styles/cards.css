@@ -10,6 +10,10 @@
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
 
+html.lenis-scrolling .cards-wrapper {
+    pointer-events: none;
+}
+
 /* ─── Base Card ──────────────────────────────────────────────────────────── */
 .card {
     width: 320px;
@@ -26,6 +30,7 @@
     color: var(--color-white);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     transform-origin: center center;
+    will-change: transform;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
 }
 
@@ -59,43 +64,33 @@
 .card-darkblue {
     background-color: var(--color-lightblue);
     color: var(--color-dark);
-    left: calc(50% - 610px);
-    top: 100px;
-    transform: rotate(-5deg);
+    left: calc(50% - 460px);
+    top: 70px;
+    transform: rotate(-6deg);
     z-index: 2;
-}
-
-.card-orange {
-    background-color: var(--color-orange);
-    color: var(--color-dark);
-    left: calc(50% - 310px);
-    top: 20px;
-    transform: rotate(5deg);
-    z-index: 3;
 }
 
 .card-maroon {
     background-color: var(--color-maroon);
-    left: calc(50% - 10px);
+    left: calc(50% - 160px);
     top: 30px;
-    transform: rotate(-8deg);
-    z-index: 4;
+    transform: rotate(2deg);
+    z-index: 3;
 }
 
 .card-pink {
     background-color: var(--color-pink);
     color: var(--color-dark);
-    left: calc(50% + 290px);
+    left: calc(50% + 140px);
     top: 70px;
-    transform: rotate(5deg);
-    z-index: 5;
+    transform: rotate(6deg);
+    z-index: 4;
 }
 
 
 
 /* Light card divider overrides */
 .card-pink .card-divider-svg,
-.card-orange .card-divider-svg,
 .card-darkblue .card-divider-svg {
     color: rgba(0, 0, 0, 0.8);
 }

@@ -40,6 +40,19 @@ export default function Home() {
                     }
                 }
             );
+
+            // Animate the underline in the resume section
+            gsap.to('.resume-section .title-underline-svg path', {
+                strokeDashoffset: 0,
+                duration: 1.2,
+                ease: 'power3.out',
+                stagger: 0.3,
+                scrollTrigger: {
+                    trigger: '.resume-section',
+                    start: 'top 75%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
         }
     }, []);
 

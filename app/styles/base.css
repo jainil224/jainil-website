@@ -64,6 +64,10 @@ body {
     cursor: url("/assets/Cursor SVG/cursor-default.svg") 2 0, auto;
 }
 
+html.lenis-scrolling body {
+    pointer-events: none !important;
+}
+
 html {
     scrollbar-width: none;
     -ms-overflow-style: none;

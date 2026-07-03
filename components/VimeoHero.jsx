@@ -6,6 +6,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import dynamic from 'next/dynamic';
 const Dither = dynamic(() => import('./Dither'), { ssr: false });
 
+const colors = [
+    [0, 0.8235, 1], // #00d2ff
+    [0.1647, 0.0157, 0.3098], // #2a044f
+    [0.9412, 0.7451, 0.9804], // #f0befa
+    [0.6275, 0.1961, 0.3529], // #a0325a
+    [0.1608, 0.4471, 0.3725], // #29725f
+    [0.0980, 0.0980, 0.4392], // #191970
+    [0.6902, 0.7686, 0.8706], // #b0c4de
+    [0.8078, 0.0706, 0.0706], // #ce1212
+    [0.7804, 0.6784, 0.4157], // #c7ad6a
+    [0.0000, 0.5922, 0.6549], // #0097a7
+    [0.4784, 0.2314, 0.2745], // #7a3b46
+];
+
 export default function VimeoHero() {
     const titleRef = useRef(null);
     const [leftLoaded, setLeftLoaded] = useState(false);
@@ -13,19 +27,7 @@ export default function VimeoHero() {
     const [startAnimation, setStartAnimation] = useState(false);
     const [colorIndex, setColorIndex] = useState(0);
 
-    const colors = [
-        [0, 0.8235, 1], // #00d2ff
-        [0.1647, 0.0157, 0.3098], // #2a044f
-        [0.9412, 0.7451, 0.9804], // #f0befa
-        [0.6275, 0.1961, 0.3529], // #a0325a
-        [0.1608, 0.4471, 0.3725], // #29725f
-        [0.0980, 0.0980, 0.4392], // #191970
-        [0.6902, 0.7686, 0.8706], // #b0c4de
-        [0.8078, 0.0706, 0.0706], // #ce1212
-        [0.7804, 0.6784, 0.4157], // #c7ad6a
-        [0.0000, 0.5922, 0.6549], // #0097a7
-        [0.4784, 0.2314, 0.2745], // #7a3b46
-    ];
+
 
     useEffect(() => {
         const interval = setInterval(() => {

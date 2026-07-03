@@ -25,6 +25,19 @@ export default function CertificatesSection() {
             }
         );
 
+        // Animate the underline in the certificates section
+        gsap.to('.certs-sec-title .title-underline-svg path', {
+            strokeDashoffset: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: '.certs-sec-title',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
         // Fade in cards
         gsap.utils.toArray('.certs-sec-card').forEach((card) => {
             gsap.fromTo(card,

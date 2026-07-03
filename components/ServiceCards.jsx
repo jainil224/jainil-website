@@ -10,7 +10,7 @@ export default function ServiceCards() {
         gsap.registerPlugin(ScrollTrigger);
 
         // Animate underline SVG paths on scroll (from HeroSection)
-        gsap.to('.title-underline-svg path', {
+        gsap.to('.service-cards-wrapper .title-underline-svg path', {
             strokeDashoffset: 0,
             duration: 1.2,
             ease: 'power3.out',
@@ -75,26 +75,25 @@ function initCardAnimations() {
     if (!cards.length) return;
 
     const originalData = [
-        { rotation: -5 },
-        { rotation: 5 },
-        { rotation: -8 },
-        { rotation: 5 }
+        { rotation: -6 },
+        { rotation: 2 },
+        { rotation: 6 }
     ];
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isDesktop = window.matchMedia('(min-width: 1201px)').matches;
     let leaveTimeout = null;
 
-    if (!isMobile) {
+    if (isDesktop) {
         cards.forEach((card, index) => {
             card.addEventListener('mouseenter', () => {
                 if (leaveTimeout) { clearTimeout(leaveTimeout); leaveTimeout = null; }
 
                 cards.forEach((otherCard, otherIndex) => {
                     if (otherIndex === index) {
-                        // Hovered card: bring to front, move up, scale up
+                        // Hovered card: bring to front, scale up, no Y shift to prevent hover thrashing
                         gsap.to(otherCard, { 
                             x: 0, 
-                            y: -40, 
+                            y: 0, 
                             rotation: 0, 
                             scale: 1.05, 
                             zIndex: 50, 
@@ -103,7 +102,7 @@ function initCardAnimations() {
                             overwrite: true 
                         });
                     } else {
-                        // Other cards: push to the side and slightly down/back
+                        // Other cards: push to the side
                         const pushX = otherIndex < index ? -60 : 60;
                         const angleRad = originalData[otherIndex].rotation * (Math.PI / 180);
                         const pushY = pushX * Math.tan(angleRad) + 20;
@@ -140,8 +139,7 @@ function initCardAnimations() {
             });
         });
     } else {
-        // Mobile: Use standard native flex scrolling from responsive.css for smooth phone scrolling.
-        // We can add a subtle fade-up stagger animation on scroll.
+        // Tablet & Mobile: standard vertical layout, apply simple scroll fade
         gsap.from(cards, {
             opacity: 0,
             y: 40,
