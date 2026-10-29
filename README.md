@@ -6,7 +6,7 @@
 
 A premium, highly interactive portfolio website showcasing projects, skills, and professional credentials. Built using **Next.js 14**, **GSAP (GreenSock)** for smooth animations, and **Vanilla CSS** for a clean, custom design system.
 
----
+-----
 
 ## 🎨 Website Visual & Project Showcase
 
